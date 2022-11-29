@@ -66,14 +66,11 @@ public class LoginController implements Initializable{
     @FXML
     private Button buttonCancel;
 
-    @FXML private void cancel(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         buttonCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             System.exit(0);
         });
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             String UserLogin = fieldUser.getText();
@@ -102,28 +99,6 @@ public class LoginController implements Initializable{
 
     }
 
-    /*
-    private GluonObservableObject<User> getDataByNamePassWord(String userLogin, String passWord) {
-    }
-
-
-
-
-    public void add(User object) {
-
-        RestClient client = RestClient.create()
-                .method("POST")
-                .host("http://localhost:8080/repaircar/api/individu/")
-                .connectTimeout(20000)
-                .readTimeout(20000)
-                .dataString(jsonClass.getStringJson(object))
-                .contentType("application/json");
-
-        GluonObservableObject<java.lang.Object> question = DataProvider.retrieveObject(client.createObjectDataReader(java.lang.Object.class));
-
-    }
-
-   */
     public static GluonObservableObject<User> getDataByNamePassWord(String userLogin2, String passWord2){
 
         RestClient client = RestClient.create()

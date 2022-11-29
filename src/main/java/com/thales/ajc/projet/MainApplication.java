@@ -8,7 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+import org.kordamp.bootstrapfx.BootstrapFX;
+import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 
 public class MainApplication extends Application {
@@ -16,7 +17,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/login.fxml"));
+        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/Enseignant.fxml"));
 
         /*
         Full Screen
@@ -31,6 +32,7 @@ public class MainApplication extends Application {
 
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Welcome");
         stage.setScene(scene);
         stage.show();

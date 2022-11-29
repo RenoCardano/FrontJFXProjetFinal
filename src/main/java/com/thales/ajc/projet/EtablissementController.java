@@ -49,12 +49,11 @@ public class EtablissementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
 
 
     }
-
-
 
 }
