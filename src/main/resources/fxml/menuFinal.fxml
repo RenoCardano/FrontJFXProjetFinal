@@ -38,7 +38,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox prefHeight="354.0" prefWidth="181.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
