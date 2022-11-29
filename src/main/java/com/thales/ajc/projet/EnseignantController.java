@@ -54,7 +54,7 @@ public class EnseignantController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+/*
         idButtonValiderEns.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEns.getStyleClass().setAll("btn","btn-danger");
 
@@ -95,7 +95,7 @@ public class EnseignantController implements Initializable{
     }
 
     private GluonObservableObject createEnseignant(Enseignant enseignant) {
-    }
+    }*/
 
 }
 }

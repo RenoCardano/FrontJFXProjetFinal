@@ -17,7 +17,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/Enseignant.fxml"));
+        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/Etablissement.fxml"));
 
         /*
         Full Screen
