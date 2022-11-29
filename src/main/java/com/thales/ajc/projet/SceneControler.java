@@ -1,2 +1,4 @@
-package com.thales.ajc.projet;public class SceneControler {
+package com.thales.ajc.projet;
+
+public class SceneControler {
 }

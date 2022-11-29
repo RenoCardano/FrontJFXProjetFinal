@@ -1,10 +1,11 @@
-package com.thales.projetreparcar;
+package com.thales.ajc.projet;
 
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
-import com.thales.projetreparcar.api.jsonClass;
-import com.thales.projetreparcar.modele.User;
+import com.thales.ajc.projet.MainApplication;
+import com.thales.ajc.projet.modele.User;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -32,21 +33,33 @@ import java.util.concurrent.Executors;
 
 public class LoginController implements Initializable{
 
-    private ObservableList<User> listOfUsers;
+    @FXML
+    private Button login;
+    Stage stage;
+    Parent root;
+    Scene scene;
+
+    public void switchToMenu(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/menu2.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML  private ObservableList<User> listOfUsers;
     private static final String JSON_URL = "http://localhost:8081/monapp/api/users";
     private final ExecutorService executorService = Executors.newCachedThreadPool();
-    public static User userConnected;
-    @FXML
-    private TextField fieldUser;
+
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private ComboBox myRole;
+
     @FXML
     private Button buttonEntry;
 
     @FXML
-    private Label verifAuth;
+    private TextField fieldUser;
 
     @FXML
     private Button buttonCancel;
@@ -57,18 +70,32 @@ public class LoginController implements Initializable{
         });
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    private void log(MouseEvent mouseEvent) {
-
-        System.out.println("LOGIN");
-        String UserLogin = fieldUser.getText();
-        String PassWord = "Recap.2022!"; //passwordField.getText();
-        String url = "http://localhost:8080/repaircar/api/individu/";
-        checkCredential(UserLogin, PassWord, mouseEvent );
-        verifAuth.setText("");
-
+        buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                switchToMenu(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
     }
+
+
+
+    private void log(MouseEvent mouseEvent) throws IOException {
+
+        String UserLogin = fieldUser.getText();
+        ;
+
+        String PassWord = "Recap.2022!"; //passwordField.getText();
+        String url = "http://localhost:8080/repaircar/api/individu/";
+        //checkCredential(UserLogin, PassWord, mouseEvent );
+
+    }
+    /*
     public void add(User object) {
 
         RestClient client = RestClient.create()
@@ -121,12 +148,11 @@ public class LoginController implements Initializable{
         }
 
     }
+  */
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, this::log);
 
-    }
+
+
 }
 
 
