@@ -32,25 +32,41 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <VBox style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" text="Action 1" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="100.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/home.png" />
+                        <Image url="@../icons/home.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" text="Action 2">
+            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="100.0" text="Matière">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +74,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" text="Action 3">
+            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="100.0" text="Salle de classe">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +82,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="100.0" text="Action 1" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="100.0" text="Classe" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,14 +91,45 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Professeur" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Utilisateur" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Jour" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </right>
    <bottom>
-      <AnchorPane prefHeight="50.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="12.0" prefWidth="786.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Nom du Lycée" />
+         </children></VBox>
    </left>
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
@@ -93,11 +140,11 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <HBox>
+                              <HBox prefHeight="277.0" prefWidth="633.0">
                                  <children>
-                                    <VBox>
+                                    <VBox prefHeight="277.0" prefWidth="314.0">
                                        <children>
-                                          <Label text="Section 1 : ">
+                                          <Label text="Paramétrage Etablissement :">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -107,23 +154,44 @@
                                           </Label>
                                           <GridPane>
                                              <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="81.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="Label" GridPane.rowIndex="1" />
-                                                <Label text="Label" GridPane.rowIndex="2" />
-                                                <Label text="Label" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " />
+                                                <Label text="Adresse" GridPane.rowIndex="1" />
+                                                <Label text="Type" GridPane.rowIndex="2" />
+                                                <Label text="Logo" GridPane.rowIndex="4" />
+                                                <TextField fx:id="idNomEtablissement" prefWidth="157.0" GridPane.columnIndex="1" />
+                                                <TextField fx:id="idAdresseEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="idTypeEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Télephone" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idTelEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idLogoEtablissement" promptText="changer pour logo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Button fx:id="idButtonResetEtablissement" mnemonicParsing="false" text="Réinitialiser" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="idButtonValiderEtablissement" mnemonicParsing="false" text="Valider" GridPane.rowIndex="1" />
+                                                   </children>
+                                                </GridPane>
                                              </children>
                                           </GridPane>
                                        </children>
@@ -131,7 +199,7 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox>
+                                    <VBox prefHeight="277.0" prefWidth="310.0">
                                        <children>
                                           <Label text="Section 2 : ">
                                              <font>
@@ -176,11 +244,114 @@
                   </Tab>
                   <Tab text="Untitled Tab 2">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane>
+                           <children>
+                              <HBox prefHeight="277.0" prefWidth="633.0">
+                                 <children>
+                                    <VBox prefHeight="277.0" prefWidth="314.0">
+                                       <children>
+                                          <Label text="Paramétrage Etablissement :">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets bottom="15.0" left="15.0" top="20.0" />
+                                             </opaqueInsets>
+                                          </Label>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="81.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " />
+                                                <Label text="Adresse" GridPane.rowIndex="1" />
+                                                <Label text="Type" GridPane.rowIndex="2" />
+                                                <Label text="Logo" GridPane.rowIndex="4" />
+                                                <TextField fx:id="idNomEtablissement1" prefWidth="157.0" GridPane.columnIndex="1" />
+                                                <TextField fx:id="idAdresseEtablissement1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="idTypeEtablissement1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Télephone" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idTelEtablissement1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idLogoEtablissement1" promptText="changer pour logo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Button fx:id="idButtonResetEtablissement1" mnemonicParsing="false" text="Réinitialiser" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="idButtonValiderEtablissement1" mnemonicParsing="false" text="Valider" GridPane.rowIndex="1" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="277.0" prefWidth="310.0">
+                                       <children>
+                                          <Label text="Section 2 : ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets bottom="15.0" left="15.0" top="20.0" />
+                                             </opaqueInsets>
+                                          </Label>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Label" GridPane.rowIndex="1" />
+                                                <Label text="Label" GridPane.rowIndex="2" />
+                                                <Label text="Label" />
+                                                <TextField GridPane.columnIndex="1" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                                <Button fx:id="goto21" mnemonicParsing="false" text="GoToMenu2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
                      </content>
                   </Tab>
                </tabs>
             </TabPane>
+            <Button layoutX="560.0" layoutY="314.0" mnemonicParsing="false" text="Voir le Calendrier" />
          </children>
       </AnchorPane>
    </center>
