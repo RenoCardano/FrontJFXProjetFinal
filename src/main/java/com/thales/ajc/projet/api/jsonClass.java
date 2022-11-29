@@ -116,11 +116,12 @@ public class jsonClass {
 
     public static String getStringJson( Object objet) {
         ObjectMapper objectMapper = new ObjectMapper();
-        //objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
         try{
             return objectMapper.writeValueAsString(objet);
         } catch (JsonProcessingException e){
-           throw new RuntimeException();
+           e.printStackTrace();
         }
+        return null;
     }
 }

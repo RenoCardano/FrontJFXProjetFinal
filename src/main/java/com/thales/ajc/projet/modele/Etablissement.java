@@ -1,5 +1,7 @@
 package com.thales.ajc.projet.modele;
 
+import java.util.List;
+
 public class Etablissement {
 
     private int idEtablissement;
@@ -7,13 +9,23 @@ public class Etablissement {
     private String adresse;
     private String type;
     private String numeroTelephone;
+    private String logo;
 
-    public Etablissement(int idEtablissement, String nom, String adresse, String type, String numeroTelephone) {
+    public Etablissement(int idEtablissement, String nom, String adresse, String type, String numeroTelephone, String logo) {
         this.idEtablissement = idEtablissement;
         this.nom = nom;
         this.adresse = adresse;
         this.type = type;
         this.numeroTelephone = numeroTelephone;
+        this.logo = logo;
+    }
+
+    public int getIdEtablissement() {
+        return idEtablissement;
+    }
+
+    public void setIdEtablissement(int idEtablissement) {
+        this.idEtablissement = idEtablissement;
     }
 
     public String getNom() {
@@ -48,13 +60,11 @@ public class Etablissement {
         this.numeroTelephone = numeroTelephone;
     }
 
-    @Override
-    public String toString() {
-        return "Etablissement{" +
-                "nom='" + nom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", type='" + type + '\'' +
-                ", numeroTelephone='" + numeroTelephone + '\'' +
-                '}';
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }
