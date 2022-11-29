@@ -57,6 +57,8 @@ public class LoginController implements Initializable{
 
     @FXML
     private Button buttonEntry;
+    @FXML
+    private Label verifAuth;
 
     @FXML
     private TextField fieldUser;
@@ -74,28 +76,39 @@ public class LoginController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            String UserLogin = fieldUser.getText();
+            String PassWord = passwordField.getText();
+            System.out.println(UserLogin);
+            System.out.println(PassWord);
+            checkCredential(UserLogin, PassWord, e );
+        });
+
+    }
+
+    private void checkCredential(String userLogin, String passWord, MouseEvent e) {
+        GluonObservableObject<User> isUserExist = getDataByNamePassWord(userLogin,passWord);
+
+        isUserExist.setOnSucceeded( a-> {
             try {
                 switchToMenu(e);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
+        isUserExist.setOnFailed( a-> {
+            verifAuth.setText("Erreur de login ou de mot de passe !");
+            verifAuth.setTextFill(Color.RED);
+        });
 
     }
 
-
-
-    private void log(MouseEvent mouseEvent) throws IOException {
-
-        String UserLogin = fieldUser.getText();
-        ;
-
-        String PassWord = "Recap.2022!"; //passwordField.getText();
-        String url = "http://localhost:8080/repaircar/api/individu/";
-        //checkCredential(UserLogin, PassWord, mouseEvent );
-
-    }
     /*
+    private GluonObservableObject<User> getDataByNamePassWord(String userLogin, String passWord) {
+    }
+
+
+
+
     public void add(User object) {
 
         RestClient client = RestClient.create()
@@ -110,47 +123,17 @@ public class LoginController implements Initializable{
 
     }
 
-    public static GluonObservableObject<User> getDataByNamePassWord(String userLogin, String passWord){
+   */
+    public static GluonObservableObject<User> getDataByNamePassWord(String userLogin2, String passWord2){
 
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/repaircar/api/individu/"+ userLogin+"/" + passWord)
+                .host("http://localhost:8081/api/users/"+userLogin2+"/" + passWord2)
                 .connectTimeout(20000)
                 .readTimeout(20000);
 
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
     }
-
-    private void checkCredential(String userLogin, String passWord, MouseEvent mouseEvent) {
-
-        GluonObservableObject<User> isUserExist = getDataByNamePassWord(userLogin,passWord);
-
-        isUserExist.setOnSucceeded( e-> {
-           // userConnected = new User();
-            //System.out.println(isUserExist.asString());
-            constructNextScene(isUserExist.get().getRole().toLowerCase());
-        });
-        isUserExist.setOnFailed( e-> {
-            verifAuth.setText("Erreur de login ou de mot de passe !");
-            verifAuth.setTextFill(Color.RED);
-        });
-
-
-    }
-
-    private void constructNextScene (String roleName){
-        System.out.println(roleName);
-        if(roleName.equals("admin")){
-            ReparcarApplication.setPane(1);
-        }
-        if(roleName.equals("magasinier")){
-            ReparcarApplication.setPane(2);
-        }
-
-    }
-  */
-
-
 
 
 }

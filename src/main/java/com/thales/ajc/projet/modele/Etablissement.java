@@ -2,12 +2,14 @@ package com.thales.ajc.projet.modele;
 
 public class Etablissement {
 
+    private int idEtablissement;
     private String nom;
     private String adresse;
     private String type;
     private String numeroTelephone;
 
-    public Etablissement(String nom, String adresse, String type, String numeroTelephone) {
+    public Etablissement(int idEtablissement, String nom, String adresse, String type, String numeroTelephone) {
+        this.idEtablissement = idEtablissement;
         this.nom = nom;
         this.adresse = adresse;
         this.type = type;
