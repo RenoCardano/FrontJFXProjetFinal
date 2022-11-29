@@ -40,7 +40,7 @@ public class LoginController implements Initializable{
     Scene scene;
 
     public void switchToMenu(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/menu2.fxml"));
+        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/Etablissement.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -73,8 +73,8 @@ public class LoginController implements Initializable{
         });
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            String UserLogin = fieldUser.getText();
-            String PassWord = passwordField.getText();
+            String UserLogin = "Renaud";//fieldUser.getText();
+            String PassWord = "France"; passwordField.getText();
             System.out.println(UserLogin);
             System.out.println(PassWord);
             checkCredential(UserLogin, PassWord, e );
