@@ -9,7 +9,9 @@ module com.thales.ajc.projet {
     requires lombok;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-
+    exports com.thales.ajc.projet.modele;
+    exports com.thales.ajc.projet.api;
     opens com.thales.ajc.projet to javafx.fxml;
     exports com.thales.ajc.projet;
+
 }

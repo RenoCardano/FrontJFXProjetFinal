@@ -35,22 +35,7 @@ public class LoginController implements Initializable{
 
     @FXML
     private Button login;
-    Stage stage;
-    Parent root;
-    Scene scene;
 
-    public void switchToMenu(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(MainApplication.class.getResource("/fxml/menu2.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    @FXML  private ObservableList<User> listOfUsers;
-    private static final String JSON_URL = "http://localhost:8081/monapp/api/users";
-    private final ExecutorService executorService = Executors.newCachedThreadPool();
 
     @FXML
     private PasswordField passwordField;
@@ -66,18 +51,15 @@ public class LoginController implements Initializable{
     @FXML
     private Button buttonCancel;
 
-    @FXML private void cancel(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         buttonCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             System.exit(0);
         });
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            String UserLogin = fieldUser.getText();
-            String PassWord = passwordField.getText();
+            String UserLogin = "Renaud";//fieldUser.getText();
+            String PassWord = "France"; passwordField.getText();
             System.out.println(UserLogin);
             System.out.println(PassWord);
             checkCredential(UserLogin, PassWord, e );
@@ -90,7 +72,7 @@ public class LoginController implements Initializable{
 
         isUserExist.setOnSucceeded( a-> {
             try {
-                switchToMenu(e);
+              SceneControler.switchScene(e, "Etablissement");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -102,28 +84,6 @@ public class LoginController implements Initializable{
 
     }
 
-    /*
-    private GluonObservableObject<User> getDataByNamePassWord(String userLogin, String passWord) {
-    }
-
-
-
-
-    public void add(User object) {
-
-        RestClient client = RestClient.create()
-                .method("POST")
-                .host("http://localhost:8080/repaircar/api/individu/")
-                .connectTimeout(20000)
-                .readTimeout(20000)
-                .dataString(jsonClass.getStringJson(object))
-                .contentType("application/json");
-
-        GluonObservableObject<java.lang.Object> question = DataProvider.retrieveObject(client.createObjectDataReader(java.lang.Object.class));
-
-    }
-
-   */
     public static GluonObservableObject<User> getDataByNamePassWord(String userLogin2, String passWord2){
 
         RestClient client = RestClient.create()
