@@ -39,7 +39,7 @@
                   </Label>
                   <ImageView fitHeight="37.0" fitWidth="76.0" focusTraversable="true" mouseTransparent="true" nodeOrientation="INHERIT" opacity="0.91" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <image>
-                        <Image url="@../icons/pngegg%20(1).png" />
+                        <Image url="@../icons/9b63ec2d-813a-4a24-8464-8b4232f30e7e.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
