@@ -62,9 +62,13 @@ public class EtablissementController implements Initializable {
     @FXML
     private Label fetchStatus;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //REDIRECTION VERS PROFFESSEUR
+        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+        });
 
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
