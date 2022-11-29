@@ -11,6 +11,13 @@ public class Etablissement {
     private String numeroTelephone;
     private String logo;
 
+<<<<<<< HEAD
+=======
+    public Etablissement(){
+
+    }
+
+>>>>>>> aa560c0339e69d17dd87a831dd6ede1ee057fe6b
     public Etablissement(int idEtablissement, String nom, String adresse, String type, String numeroTelephone, String logo) {
         this.idEtablissement = idEtablissement;
         this.nom = nom;
@@ -18,6 +25,7 @@ public class Etablissement {
         this.type = type;
         this.numeroTelephone = numeroTelephone;
         this.logo = logo;
+<<<<<<< HEAD
     }
 
     public int getIdEtablissement() {
@@ -26,6 +34,8 @@ public class Etablissement {
 
     public void setIdEtablissement(int idEtablissement) {
         this.idEtablissement = idEtablissement;
+=======
+>>>>>>> aa560c0339e69d17dd87a831dd6ede1ee057fe6b
     }
 
     public String getNom() {
@@ -66,5 +76,20 @@ public class Etablissement {
 
     public void setLogo(String logo) {
         this.logo = logo;
+<<<<<<< HEAD
+=======
+    }
+
+    @Override
+    public String toString() {
+        return "Etablissement{" +
+                "idEtablissement=" + idEtablissement +
+                ", nom='" + nom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", type='" + type + '\'' +
+                ", numeroTelephone='" + numeroTelephone + '\'' +
+                ", logo='" + logo + '\'' +
+                '}';
+>>>>>>> aa560c0339e69d17dd87a831dd6ede1ee057fe6b
     }
 }
