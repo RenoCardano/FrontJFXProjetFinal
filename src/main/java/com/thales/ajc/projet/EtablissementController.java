@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,9 +63,17 @@ public class EtablissementController implements Initializable {
     @FXML
     private Label fetchStatus;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //REDIRECTION VERS PROFFESSEUR
+        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Enseignant");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
