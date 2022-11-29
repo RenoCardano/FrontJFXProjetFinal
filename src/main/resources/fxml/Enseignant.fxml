@@ -32,13 +32,33 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
+<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
    <right>
       <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
@@ -54,7 +74,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/param.png" />
+                        <Image url="@../icons/param.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -62,7 +82,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/user.png" />
+                        <Image url="@../icons/user.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -70,7 +90,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/folder.png" />
+                        <Image url="@../icons/folder.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -147,6 +167,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
                                                 <Label prefHeight="17.0" prefWidth="103.0" text="Nom " />
@@ -155,10 +176,10 @@
                                                 <TextField fx:id="idNomEnseignant" prefHeight="33.0" prefWidth="175.0" GridPane.columnIndex="1" />
                                                 <TextField fx:id="idPrenomEnseignant" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="idTypeEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="Télephone" GridPane.rowIndex="3" />
-                                                <TextField fx:id="idTelEnseignant" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                <Label text="Télephone" GridPane.rowIndex="4" />
+                                                <TextField fx:id="idTelEnseignant" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -180,6 +201,8 @@
                                                    </children>
                                                 </GridPane>
                                                 <DatePicker fx:id="DateNaissance" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Etablissement" GridPane.rowIndex="3" />
+                                                <ComboBox fx:id="comboEta" prefHeight="25.0" prefWidth="241.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                              </children>
                                           </GridPane>
                                           <GridPane>
@@ -192,7 +215,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label prefHeight="27.0" prefWidth="288.0" GridPane.rowIndex="1">
+                                                <Label fx:id="status" prefHeight="27.0" prefWidth="288.0" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
@@ -214,7 +237,11 @@
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <TableView fx:id="listeEnseignant" />
+                                          <TableView fx:id="listeEnseignant">
+                                             <columns>
+                                                <TableColumn fx:id="colonneNom" prefWidth="119.0" text="Column X" />
+                                                <TableColumn fx:id="colonneDate" prefWidth="127.0" text="Column X" />
+                                             </columns></TableView>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -366,7 +393,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/play.png" />
+                              <Image url="@../icons/play.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -375,7 +402,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/redo.png" />
+                              <Image url="@../icons/redo.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -384,7 +411,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/save.png" />
+                              <Image url="@../icons/save.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -393,7 +420,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/exit.png" />
+                              <Image url="@../icons/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -402,7 +429,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/about.png" />
+                              <Image url="@../icons/about.png" />
                            </image>
                         </ImageView>
                      </graphic>
