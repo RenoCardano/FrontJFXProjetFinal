@@ -72,7 +72,7 @@ public class EnseignantController implements Initializable{
                 System.out.println("succeed !");
                 List<String> nomEtablissement = new ArrayList<String>();
                 nomEtablissement = etablissements.stream().map(c -> c.getNom()).toList();
-                comboEta.getItems().addAll(etablissements);
+                comboEta.getItems().addAll(nomEtablissement);
                 comboEta.getSelectionModel().selectFirst();
 
         });
