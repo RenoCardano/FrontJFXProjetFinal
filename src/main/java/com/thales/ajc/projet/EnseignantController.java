@@ -6,6 +6,7 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class EnseignantController implements Initializable {
     Scene scene;
 
     @FXML
-    private TableColumn colonneDate, colonneNom, TabCodMat, tabNomEns;
+    private TableColumn colonneDate, colonneNom ;
     @FXML private TreeView treeView;
 
     public void switchToMenu(MouseEvent event) throws IOException {
@@ -47,8 +48,12 @@ public class EnseignantController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
+    @FXML
+    private
+    TableColumn<Enseignement, String> tabNomEns  = new TableColumn<Enseignement, String>("Enseignants");
+    @FXML
+    private
+    TableColumn<Enseignement, String> TabCodMat  = new TableColumn<Enseignement, String>("Matières");
     @FXML
     private Button idButtonValiderEns, idButtonResetEns, validerAssociation, delMat;
     @FXML
@@ -62,7 +67,7 @@ public class EnseignantController implements Initializable {
     @FXML
     private DatePicker DateNaissance;
     @FXML
-    private ComboBox comboEta, comboMat, comboEns;
+    private ComboBox  comboMat, comboEns;
     @FXML
     private ImageView logo;
     @FXML
@@ -116,11 +121,10 @@ public class EnseignantController implements Initializable {
             //reccupere la valeur de l'index de l'enseignant dans la comboBox
             String comboEnseignant = String.valueOf(comboEns.getValue());
             String idEnseignant = String.valueOf(comboEnseignant.charAt(0));
-            selectedEnseiMat.setText(idEnseignant);
+
             //reccupere la valeur de l'index de la matiere dans la comboBox
             String comboMatiere = String.valueOf(comboMat.getValue());
             String idMatiere = String.valueOf(comboMatiere.charAt(0));
-            selectMatmat.setText(idMatiere);
             statusMat.setText("");
 
             GluonObservableObject<Enseignant> enseignantSelected = getAllEnseignantbyID(idEnseignant);
@@ -132,7 +136,6 @@ public class EnseignantController implements Initializable {
                 matiereSelected.setOnSucceeded(matiere -> {
 
                     Enseignement enseignement = new Enseignement(enseignantSelected.get(), matiereSelected.get());
-                    System.out.println(enseignement.toString());
 
                     GluonObservableObject<Enseignement> association = associationEnSMat(enseignement);
                     association.setOnSucceeded(a -> {
@@ -158,6 +161,7 @@ public class EnseignantController implements Initializable {
                 statusMat.setTextFill(Color.RED);
             });
 
+            //TODO rafraichir les selection tab assoc, comobox, couleur
 
         });
 
@@ -172,6 +176,7 @@ public class EnseignantController implements Initializable {
                 //logo.setImage(new Image("../resources/icons/about.png"));
 
             });
+
             userInfo.setOnFailed(a -> {
                 status.setText("Erreur pendant le chargement des données");
                 status.setTextFill(Color.RED);
@@ -388,12 +393,17 @@ public class EnseignantController implements Initializable {
 
     private void fetchEnseignement() {
         GluonObservableList<Enseignement> enseignement = getAllEnseignementt();
+        tabNomEns.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        TabCodMat.setCellValueFactory(new PropertyValueFactory<>("codeMat"));
 
-        colonneNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colonneDate.setCellValueFactory(new PropertyValueFactory<>("codeMat"));
-
-        List<Enseignement> ens = enseignement.stream().toList();
-        System.out.println(ens);
+        tabNomEns.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String nomEnseignant = pieceStringCellDataFeatures.getValue().getEnseignant().getNom();
+            return new SimpleStringProperty(nomEnseignant);
+        });
+        TabCodMat.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String matiereEnseignees = pieceStringCellDataFeatures.getValue().getMatiereEnseignee().getNom();
+            return new SimpleStringProperty(matiereEnseignees);
+        });
 
         enseignement.setOnSucceeded(e -> {
             tableAssosEM.setItems(enseignement);

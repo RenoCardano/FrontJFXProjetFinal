@@ -159,7 +159,6 @@ public class EtablissementController implements Initializable {
         idButtonValiderEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             Etablissement etablissement = new Etablissement();
 
-            etablissement.setIdEtablissement(Integer.parseInt(idIDEtablissement.getText()));
             etablissement.setNom(idNomEtablissement.getText());
             etablissement.setAdresse(idAdresseEtablissement.getText());
             etablissement.setNumeroTelephone(idTelEtablissement.getText());
@@ -176,21 +175,13 @@ public class EtablissementController implements Initializable {
             etablissementCreated.setOnSucceeded(a -> {
                 fetchStatus.setText("Enregistrement effectué");
                 fetchStatus.setTextFill(Color.GREEN);
+                listeEtablissement.setItems(null);
+                fetchEtablissement();
+
             });
             etablissementCreated.setOnFailed(a -> {
                 fetchStatus.setText("Erreur pendant l'enregistrement effectué");
                 fetchStatus.setTextFill(Color.RED);
-            });
-
-            /*
-                Mets a jours la liste après une insertion
-             */
-            listeEtablissement.setItems(null);
-            GluonObservableList<Etablissement> refresh = null;
-            refresh = getAllEtablissement();
-            GluonObservableList<Etablissement> finalRefresh = refresh;
-            refresh.setOnSucceeded(connectStateEvent -> {
-                listeEtablissement.setItems(finalRefresh);
             });
 
         });
