@@ -57,8 +57,8 @@ public class EnseignantController implements Initializable {
     @FXML
     private Button idButtonValiderEns, idButtonResetEns, validerAssociation, idBoutonSalle, delMat;
     @FXML
-    private Button creationMat,idBoutonMatiere, idBoutonProfesseur,
-            idBoutonJour, idBoutonUtilisateur;
+    private Button creationMat,idBoutonMatiere,idBoutonClasse,
+            idBoutonJour, idBoutonUtilisateur, idBoutonEtablissement;
     @FXML
     private TableView listeEnseignant, tableAssosEM;
     @FXML
@@ -78,7 +78,18 @@ public class EnseignantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //REDIRECTION VERS CLASSE
+
+
+        //REDIRECTION VERS Salle De Classe
+        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Etablissement");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        //REDIRECTION VERS Salle De Classe
         idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "SalleDeClasse");
@@ -86,14 +97,36 @@ public class EnseignantController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-
-        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Enseignant");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
+        idBoutonClasse.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Classe");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        idBoutonUtilisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Utilisateur");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
       /*  idBoutonUtilisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Utilisateur");

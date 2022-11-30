@@ -55,19 +55,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane prefHeight="3331.0" prefWidth="1211.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
+<BorderPane prefHeight="660.0" prefWidth="1200.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
    <right>
-      <VBox prefHeight="433.0" prefWidth="201.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="591.0" prefWidth="125.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="63.0" prefWidth="207.0" text="Etablissement" textAlignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="67.0" prefWidth="233.0" text="Matière">
+            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="80.0" prefWidth="126.0" text="Matière">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +67,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="73.0" prefWidth="231.0" text="Salle de classe">
+            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="80.0" text="Salle de classe">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +75,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="220.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="126.0" text="Classe" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -92,7 +84,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="53.0" prefWidth="232.0" text="Professeur" textAlignment="CENTER">
+            <Button fx:id="idBoutonProfesseur" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="128.0" text="Professeur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,7 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idButtonUtlisateur" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="132.0" text="Utilisateur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -110,7 +102,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="58.0" prefWidth="238.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="134.0" text="Jour" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -123,23 +115,23 @@
       </VBox>
    </right>
    <bottom>
-      <AnchorPane prefHeight="0.0" prefWidth="815.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+      <AnchorPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="117.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="131.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="17.0" prefWidth="85.0" text="Nom du Lycée" textAlignment="CENTER" />
          </children></VBox>
    </left>
    <center>
-      <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="361.0" prefWidth="521.0" BorderPane.alignment="CENTER">
+      <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3278.0" prefWidth="966.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="590.0" prefWidth="845.0">
                <children>
-                  <HBox layoutX="-185.0" layoutY="-1.0" prefHeight="3277.0" prefWidth="1045.0">
+                  <HBox layoutX="6.0" layoutY="2.0" prefHeight="589.0" prefWidth="817.0">
                      <children>
-                        <VBox prefHeight="3210.0" prefWidth="329.0">
+                        <VBox>
                            <children>
                               <Label text="Crée un établissement : ">
                                  <font>
@@ -229,7 +221,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </VBox>
-                        <VBox prefHeight="3276.0" prefWidth="531.0">
+                        <VBox prefHeight="589.0" prefWidth="623.0">
                            <children>
                               <GridPane>
                                  <columnConstraints>
@@ -261,6 +253,9 @@
                                     <TableColumn fx:id="idColumnTypeEtablissement" prefWidth="61.0" text="Type" />
                                     <TableColumn fx:id="idColumnTelEtablissement" prefWidth="51.0" text="Tel" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                            </children>
                            <padding>

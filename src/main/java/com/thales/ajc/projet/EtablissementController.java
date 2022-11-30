@@ -35,8 +35,7 @@ public class EtablissementController implements Initializable {
     private Button idBoutonClasse;
     @FXML
     private Button idBoutonProfesseur;
-    @FXML
-    private Button idBoutonUtilisateur;
+
     @FXML
     private Button idBoutonJour;
     @FXML
@@ -70,7 +69,7 @@ public class EtablissementController implements Initializable {
     @FXML
     private TextField idIDEtablissement;
     @FXML
-    private Button idDeleteEtablissement;
+    private Button idDeleteEtablissement, idButtonUtlisateur;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,7 +91,41 @@ public class EtablissementController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-
+        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Enseignant");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "SalleDeClasse");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonClasse.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Classe");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idButtonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Utilisateur");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
