@@ -93,6 +93,7 @@ public class EtablissementController implements Initializable {
             }
         });
 
+
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
 

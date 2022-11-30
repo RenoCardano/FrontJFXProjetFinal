@@ -37,6 +37,7 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -59,38 +60,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
+<BorderPane prefHeight="567.0" prefWidth="1189.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
    <right>
-      <VBox style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="161.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" ellipsisString="0" mnemonicParsing="false" prefHeight="42.0" prefWidth="154.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
-                  <ImageView fx:id="" fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/home.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="42.0" prefWidth="161.0" text="Matière">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/param.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="42.0" prefWidth="163.0" text="Salle de classe">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="162.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Matière">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -99,29 +82,47 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="42.0" prefWidth="164.0" text="Professeur" textAlignment="CENTER">
+            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="42.0" prefWidth="152.0" text="Salle de classe">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/school-house.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="42.0" prefWidth="164.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" text="Classe" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/classroom.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="42.0" prefWidth="162.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" text="Professeur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="42.0" prefWidth="152.0" text="Utilisateur" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/teacher.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Jour" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/param.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -159,9 +160,9 @@
                      <content>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
-                              <HBox prefHeight="277.0" prefWidth="633.0">
+                              <HBox prefHeight="432.0" prefWidth="880.0">
                                  <children>
-                                    <VBox prefHeight="277.0" prefWidth="314.0">
+                                    <VBox prefHeight="423.0" prefWidth="301.0" style="-fx-border-radius: 50;">
                                        <children>
                                           <Label text="Crée un enseignant : ">
                                              <font>
@@ -243,7 +244,7 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="294.0" prefWidth="317.0">
+                                    <VBox prefHeight="432.0" prefWidth="555.0">
                                        <children>
                                           <Label text="Liste des enseignants">
                                              <font>
@@ -256,13 +257,29 @@
                                                 <Insets bottom="8.0" />
                                              </padding>
                                           </Label>
-                                          <TableView fx:id="listeEnseignant" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                          <TableView fx:id="listeEnseignant" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-radius: 80;">
                                              <columns>
                                                 <TableColumn fx:id="colonneNom" prefWidth="119.0" text="Column X" />
                                                 <TableColumn fx:id="colonneDate" prefWidth="127.0" text="Column X" />
                                              </columns>
                                           </TableView>
-                                          <Button alignment="TOP_RIGHT" mnemonicParsing="false" text="Voir le Calendrier" />
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Hyperlink alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="265.0" text="Accèder au Calendrier en ligne" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="14.0" />
+                                                   </font>
+                                                </Hyperlink>
+                                             </children>
+                                          </GridPane>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -278,7 +295,7 @@
                      <content>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity">
                            <children>
-                              <HBox prefHeight="277.0" prefWidth="633.0">
+                              <HBox prefHeight="433.0" prefWidth="878.0">
                                  <children>
                                     <VBox prefHeight="277.0" prefWidth="314.0">
                                        <children>
@@ -344,7 +361,7 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="277.0" prefWidth="310.0">
+                                    <VBox prefHeight="433.0" prefWidth="558.0">
                                        <children>
                                           <Label text="Asscociation Enseignant/Matière">
                                              <font>
@@ -354,7 +371,7 @@
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <TableView fx:id="tableAssosEM" prefHeight="124.0" prefWidth="260.0">
+                                          <TableView fx:id="tableAssosEM" prefHeight="261.0" prefWidth="518.0">
                                             <columns>
                                               <TableColumn fx:id="tabNomEns" prefWidth="137.0" text="C1" />
                                               <TableColumn fx:id="TabCodMat" prefWidth="132.0" text="C2" />
@@ -364,7 +381,7 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <GridPane prefHeight="71.0" prefWidth="270.0">
+                                          <GridPane prefHeight="132.0" prefWidth="518.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -375,9 +392,12 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="Enseignant" GridPane.rowIndex="1" />
+                                                <Label text="Enseignant  " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                                 <ComboBox fx:id="comboMat" prefHeight="25.0" prefWidth="241.0" GridPane.columnIndex="1" />
-                                                <Label text="Matière" />
+                                                <Label text="Matière   " GridPane.halignment="RIGHT">
+                                                   <opaqueInsets>
+                                                      <Insets right="20.0" />
+                                                   </opaqueInsets></Label>
                                                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -391,7 +411,7 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Button fx:id="validerAssociation" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="V" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="93.0" text="X" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="129.0" text="X" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="50.0" />
