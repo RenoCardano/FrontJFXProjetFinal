@@ -1,24 +1,20 @@
 package com.thales.ajc.projet.modele;
 
 
-import java.time.LocalDate;
-import java.util.Locale;
-
 public class Enseignant {
 
+    private int idEns;
     private String nom;
 
     private String dateDeNaissance;
-
-    private Etablissement etablissement;
 
    public Enseignant () {
 
    }
 
-   // TODO ajouter etablissement idem pour login
-    public Enseignant(String nom, String date_de_naissance) {
-        this.nom = nom;
+    public Enseignant(int idEns, String nom, String date_de_naissance) {
+       this.idEns = idEns;
+       this.nom = nom;
         this.dateDeNaissance = date_de_naissance;
     }
 
@@ -38,11 +34,11 @@ public class Enseignant {
         this.dateDeNaissance = dateDeNaissance;
     }
 
-    public Etablissement getEtablissement() {
-        return etablissement;
+    public int getIdEns() {
+        return idEns;
     }
 
-    public void setEtablissement(Etablissement etablissement) {
-        this.etablissement = etablissement;
+    public void setIdEns(int idEns) {
+        this.idEns = idEns;
     }
 }

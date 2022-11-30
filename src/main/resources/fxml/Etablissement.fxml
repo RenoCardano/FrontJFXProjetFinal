@@ -56,7 +56,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
+=======
+<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
+>>>>>>> 45b1bbd4a56ba176dcf2ccceba8028f5f688ff77
    <right>
       <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>

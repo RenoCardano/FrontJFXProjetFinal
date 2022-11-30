@@ -13,6 +13,14 @@ public class Etablissement {
 
     }
 
+    public int getIdEtablissement() {
+        return idEtablissement;
+    }
+
+    public void setIdEtablissement(int idEtablissement) {
+        this.idEtablissement = idEtablissement;
+    }
+
     public Etablissement(int idEtablissement, String nom, String adresse, String type, String numeroTelephone, String logo) {
         this.idEtablissement = idEtablissement;
         this.nom = nom;

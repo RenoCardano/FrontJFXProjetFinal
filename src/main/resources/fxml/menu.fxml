@@ -53,7 +53,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="com.thales.ajc.projet.HelloController" xmlns="http://javafx.com/javafx/18" stylesheets="@bootstrap3.css" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.thales.ajc.projet.HelloController" xmlns="http://javafx.com/javafx/18" stylesheets="@../Bootstrap/css/bootstrap3.css" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>

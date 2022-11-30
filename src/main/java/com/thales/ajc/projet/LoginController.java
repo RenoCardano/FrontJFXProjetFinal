@@ -1,9 +1,11 @@
 package com.thales.ajc.projet;
 
+import com.gluonhq.connect.GluonObservableList;
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.MainApplication;
+import com.thales.ajc.projet.modele.Etablissement;
 import com.thales.ajc.projet.modele.User;
 
 import javafx.collections.ObservableList;
@@ -27,6 +29,8 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -51,6 +55,9 @@ public class LoginController implements Initializable{
     @FXML
     private Button buttonCancel;
 
+    //reutiliser dans le menu pour l'affichage
+    public static GluonObservableObject<User> isUserExist;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         buttonCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -58,17 +65,28 @@ public class LoginController implements Initializable{
         });
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
             String UserLogin = "Alex";//fieldUser.getText();
             String PassWord = "Alex"; passwordField.getText();
             System.out.println(UserLogin);
             System.out.println(PassWord);
-            checkCredential(UserLogin, PassWord, e );
+            checkCredential(UserLogin, PassWord, e);
         });
+
+        ////////////////ETABLISSEMENT/////////////////
+        //Get Etablissement to fill ComboBox
+       /* GluonObservableList<Etablissement> etablissements = getAllEtablissement();
+        etablissements.setOnSucceeded( a -> {
+            System.out.println("succeed !");
+            List<String> nomEtablissement = new ArrayList<String>();
+            nomEtablissement = etablissements.stream().map(c -> c.getIdEtablissement() + "- " + c.getNom()).toList();
+            comboEta.getItems().addAll(nomEtablissement);
+            comboEta.getSelectionModel().selectFirst(); */
 
     }
 
     private void checkCredential(String userLogin, String passWord, MouseEvent e) {
-        GluonObservableObject<User> isUserExist = getDataByNamePassWord(userLogin,passWord);
+        isUserExist = getDataByNamePassWord(userLogin,passWord);
 
         isUserExist.setOnSucceeded( a-> {
             try {

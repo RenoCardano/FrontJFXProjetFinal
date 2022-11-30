@@ -7,6 +7,7 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.Etablissement;
+import com.thales.ajc.projet.modele.Matiere;
 import com.thales.ajc.projet.modele.SalleDeClasse;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -76,14 +77,14 @@ public class SalleDeClasseController implements Initializable {
         GluonObservableList<SalleDeClasse> salleDeClasse = getAllSalleDeClasse();
 
         idButtonValiderSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            SalleDeClasse salleDeClasse = new SalleDeClasse();
+            SalleDeClasse salleDeClasses = new SalleDeClasse();
 
-            salleDeClasse.setNom(idNomSalle.getText());
-            salleDeClasse.setCapacite(idCapaciteSalle.getText());
-            salleDeClasse.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
+            salleDeClasses.setNom(idNomSalle.getText());
+            salleDeClasses.setCapacite(idCapaciteSalle.getText());
+            salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
 
 
-            GluonObservableObject salleDeClasseCreated = createSalleDeClasse(salleDeClasse);
+            GluonObservableObject salleDeClasseCreated = createSalleDeClasse(salleDeClasses);
 
             salleDeClasseCreated.setOnSucceeded( a -> {
                 fetchStatus.setText("Enregistrement réussie");
