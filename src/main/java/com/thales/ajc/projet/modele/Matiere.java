@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Matiere {
-
+    @NonNull
     private int id;
     @NonNull
     private String codeMat;
@@ -21,6 +21,9 @@ public class Matiere {
     @NonNull
     private String nom;
 
-
+    @Override
+    public String toString() {
+        return id + " -" + codeMat ;
+    }
 }
 
