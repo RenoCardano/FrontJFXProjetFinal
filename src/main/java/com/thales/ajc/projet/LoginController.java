@@ -58,8 +58,8 @@ public class LoginController implements Initializable{
         });
 
         buttonEntry.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            String UserLogin = "Renaud";//fieldUser.getText();
-            String PassWord = "France"; passwordField.getText();
+            String UserLogin = "Alex";//fieldUser.getText();
+            String PassWord = "Alex"; passwordField.getText();
             System.out.println(UserLogin);
             System.out.println(PassWord);
             checkCredential(UserLogin, PassWord, e );
