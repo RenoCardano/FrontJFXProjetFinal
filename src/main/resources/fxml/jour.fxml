@@ -32,79 +32,95 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
    <right>
-      <VBox prefHeight="354.0" prefWidth="181.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonUtilisateur" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" text="Utilisateur">
+            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="100.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/pngegg%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button fx:id="idBoutonEtablissement" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="181.0" text="Etablissement" textAlignment="RIGHT">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
+                        <Image url="@../icons/home.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonClasse" alignment="TOP_LEFT" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="184.0" text="Classe">
+            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="100.0" text="Matière">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/Team-Transparent-Free-PNG.png" />
+                        <Image url="@../icons/param.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonJour" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="181.0" text="Jour" textAlignment="RIGHT">
+               </graphic></Button>
+            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="100.0" text="Salle de classe">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/calendar-color-icon.png" />
+                        <Image url="@../icons/user.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonMatiere" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="42.0" prefWidth="186.0" text="Matière" textAlignment="RIGHT">
+               </graphic></Button>
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="100.0" text="Classe" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/folder.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="idBoutonProfesseur" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" text="Professeur" textAlignment="RIGHT">
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Professeur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/teacher.png" />
+                        <Image url="@../icons/home.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonSalle" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="42.0" prefWidth="180.0" text="Salle de classe" textAlignment="RIGHT">
+            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Utilisateur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/pngegg.png" />
+                        <Image url="@../icons/home.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Jour" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </right>
@@ -114,50 +130,50 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="visibility: ff; -fx-effect: gg; -fx-image: rr; -fx-opacity: jj;" />
+            <ImageView fitHeight="133.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
+               </image></ImageView>
             <Label text="Nom du Lycée" />
          </children></VBox>
    </left>
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <TabPane style="-fx-background-color: grey; -fx-blend-mode: ff;" tabClosingPolicy="UNAVAILABLE">
+            <TabPane tabClosingPolicy="UNAVAILABLE">
                <tabs>
-                  <Tab style="-fx-background-color: grey;" text="Untitled Tab 1">
+                  <Tab text="Création d'un jour">
                      <content>
                         <AnchorPane>
                            <children>
                               <HBox prefHeight="277.0" prefWidth="633.0">
                                  <children>
-                                    <VBox prefHeight="277.0" prefWidth="314.0" style="-fx-background-color: grey;">
+                                    <VBox prefHeight="277.0" prefWidth="350.0">
                                        <children>
-                                          <GridPane prefHeight="233.0" prefWidth="274.0">
+                                          <Label text="Créer un Jour : ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets bottom="15.0" left="15.0" top="20.0" />
+                                             </opaqueInsets>
+                                          </Label>
+                                          <GridPane prefHeight="228.0" prefWidth="310.0">
                                              <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="81.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="109.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="165.0" />
                                              </columnConstraints>
                                              <rowConstraints>
-                                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="28.0" minHeight="6.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " GridPane.rowIndex="1" />
-                                                <Label text="Adresse" GridPane.rowIndex="2" />
-                                                <Label text="Type" GridPane.rowIndex="3" />
-                                                <Label text="Logo" GridPane.rowIndex="5" />
-                                                <TextField fx:id="idNomEtablissement" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="idAdresseEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="idTypeEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label text="Télephone" GridPane.rowIndex="4" />
-                                                <TextField fx:id="idTelEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="idLogoEtablissement" promptText="changer pour logo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -168,17 +184,34 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Button fx:id="idButtonResetEtablissement" mnemonicParsing="false" text="Réinitialiser" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Button fx:id="idButtonValiderEtablissement" mnemonicParsing="false" text="Valider" GridPane.rowIndex="1" />
+                                                      <Button fx:id="idButtonResetJour" mnemonicParsing="false" prefHeight="32.0" prefWidth="93.0" text="Réinitialiser" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font></Button>
+                                                      <Button fx:id="idButtonValiderJour" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="Valider" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font></Button>
                                                    </children>
                                                 </GridPane>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="193.0" text="Paramétrage Etablissement :" GridPane.columnIndex="1">
+                                                <Label text="Jour de la semaine" />
+                                                <ComboBox fx:id="idComboJour" prefHeight="25.0" prefWidth="241.0" promptText="Choisir un jour " GridPane.columnIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label fx:id="status" prefHeight="27.0" prefWidth="288.0" GridPane.rowIndex="1">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="18.0" />
                                                    </font>
-                                                   <opaqueInsets>
-                                                      <Insets bottom="15.0" left="15.0" top="20.0" />
-                                                   </opaqueInsets>
                                                 </Label>
                                              </children>
                                           </GridPane>
@@ -187,9 +220,9 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="277.0" prefWidth="310.0" style="-fx-background-color: black;">
+                                    <VBox prefHeight="277.0" prefWidth="287.0">
                                        <children>
-                                          <Label text="Section 2 : ">
+                                          <Label text="Liste des enseignants">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -197,29 +230,11 @@
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label text="Label" GridPane.rowIndex="1" />
-                                                <Label text="Label" GridPane.rowIndex="2" />
-                                                <Label text="Label" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                                <Button fx:id="goto2" mnemonicParsing="false" text="GoToMenu2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                             </children>
-                                          </GridPane>
+                                          <TableView fx:id="listeEnseignant">
+                                             <columns>
+                                                <TableColumn fx:id="colonneNom" prefWidth="119.0" text="Column X" />
+                                                <TableColumn fx:id="colonneDate" prefWidth="127.0" text="Column X" />
+                                             </columns></TableView>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -230,15 +245,15 @@
                            </children></AnchorPane>
                      </content>
                   </Tab>
-                  <Tab style="-fx-background-color: grey;" text="Untitled Tab 2">
+                  <Tab text="?">
                      <content>
                         <AnchorPane>
                            <children>
                               <HBox prefHeight="277.0" prefWidth="633.0">
                                  <children>
-                                    <VBox prefHeight="277.0" prefWidth="314.0" style="-fx-background-color: green;">
+                                    <VBox prefHeight="277.0" prefWidth="314.0">
                                        <children>
-                                          <Label text="Paramétrage Etablissement :">
+                                          <Label text="Paramétrage ? :">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -293,7 +308,7 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="277.0" prefWidth="310.0" style="-fx-background-color: yellow;">
+                                    <VBox prefHeight="277.0" prefWidth="310.0">
                                        <children>
                                           <Label text="Section 2 : ">
                                              <font>
@@ -339,10 +354,7 @@
                   </Tab>
                </tabs>
             </TabPane>
-            <Button layoutX="531.0" layoutY="314.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Voir le Calendrier">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></Button>
+            <Button layoutX="560.0" layoutY="314.0" mnemonicParsing="false" text="Voir le Calendrier" />
          </children>
       </AnchorPane>
    </center>
@@ -370,47 +382,47 @@
             </MenuBar>
             <ToolBar>
               <items>
-                <Button mnemonicParsing="false" style="-fx-background-color: grey;" text="Tool1">
+                <Button mnemonicParsing="false" text="Tool1">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 400;">
+                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/play.png" />
+                              <Image url="@../icons/play.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: yellow;" text="Tool1">
+                  <Button mnemonicParsing="false" text="Tool1">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/redo.png" />
+                              <Image url="@../icons/redo.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: pink;" text="Tool1">
+                  <Button mnemonicParsing="false" text="Tool1">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/save.png" />
+                              <Image url="@../icons/save.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Tool1">
+                  <Button mnemonicParsing="false" text="Tool1">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/exit.png" />
+                              <Image url="@../icons/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: black;" text="Tool1">
+                  <Button mnemonicParsing="false" text="Tool1">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/about.png" />
+                              <Image url="@../icons/about.png" />
                            </image>
                         </ImageView>
                      </graphic>
