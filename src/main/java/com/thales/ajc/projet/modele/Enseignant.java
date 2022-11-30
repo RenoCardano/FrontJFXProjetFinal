@@ -44,6 +44,6 @@ public class Enseignant {
 
     @Override
     public String toString() {
-        return idEns + " -" + nom ;
+        return idEns + " - " + nom ;
     }
 }

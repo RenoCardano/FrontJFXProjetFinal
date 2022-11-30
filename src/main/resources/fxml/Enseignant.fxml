@@ -48,7 +48,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -340,7 +339,6 @@
                                              </children>
                                           </GridPane>
                                           <Label fx:id="statusMat" prefHeight="17.0" prefWidth="247.0" />
-                                          <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -360,6 +358,7 @@
                                             <columns>
                                               <TableColumn fx:id="tabNomEns" prefWidth="137.0" text="C1" />
                                               <TableColumn fx:id="TabCodMat" prefWidth="132.0" text="C2" />
+                                                <TableColumn fx:id="TabCouleur" prefWidth="137.0" text="C1" />
                                             </columns>
                                              <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -404,8 +403,6 @@
                                                 <Insets bottom="50.0" />
                                              </opaqueInsets>
                                           </GridPane>
-                                          <TextField fx:id="selectedEnseiMat" />
-                                          <TextField fx:id="selectMatmat" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
