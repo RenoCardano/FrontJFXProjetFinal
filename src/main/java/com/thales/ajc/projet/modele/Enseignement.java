@@ -1,12 +1,10 @@
 package com.thales.ajc.projet.modele;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gluonhq.connect.GluonObservableObject;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
 
 
 @Data
@@ -18,8 +16,16 @@ public class Enseignement {
     @NonNull
     private Enseignant enseignant;
     @NonNull
-    private int idmatiereEnseignee;
+    private Matiere matiereEnseignee;
 
+    @Override
+    public String toString() {
+        return "Enseignement{" +
+                "idEnseignement=" + idEnseignement +
+                ", enseignant=" + enseignant +
+                ", matiereEnseignee=" + matiereEnseignee +
+                '}';
+    }
 }
 
 

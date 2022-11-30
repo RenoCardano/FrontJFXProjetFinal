@@ -41,4 +41,9 @@ public class Enseignant {
     public void setIdEns(int idEns) {
         this.idEns = idEns;
     }
+
+    @Override
+    public String toString() {
+        return idEns + " -" + nom ;
+    }
 }

@@ -30,18 +30,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EnseignantController implements Initializable{
+public class EnseignantController implements Initializable {
 
     Stage stage;
     Parent root;
     Scene scene;
 
     @FXML
-    private TableColumn  colonneDate, colonneNom,  TabCodMat, tabNomEns;
+    private TableColumn colonneDate, colonneNom, TabCodMat, tabNomEns;
+    @FXML private TreeView treeView;
 
     public void switchToMenu(MouseEvent event) throws IOException {
         root = FXMLLoader.load(MainApplication.class.getResource("/fxml/menu2.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -57,7 +58,7 @@ public class EnseignantController implements Initializable{
     @FXML
     private Label status, nomEta, NomEns, statusMat;
     @FXML
-    private TextField idNomEnseignant,ensID, idTelEnseignant,  nomMat, codeMat;
+    private TextField idNomEnseignant, ensID, nomMat, codeMat, selectedEnseiMat, selectMatmat;
     @FXML
     private DatePicker DateNaissance;
     @FXML
@@ -73,7 +74,6 @@ public class EnseignantController implements Initializable{
         ///////////////////GESTION DES MATIERES ET ASSOCIATION MAT/ENS
 
 
-
         //CREATION D'UNE MATIERE
         creationMat.addEventHandler(MouseEvent.MOUSE_CLICKED, m -> {
             Matiere matiere = new Matiere();
@@ -85,7 +85,7 @@ public class EnseignantController implements Initializable{
 
             GluonObservableObject<Matiere> creationMatiere = createMat(matiere);
 
-            creationMatiere.setOnSucceeded( a -> {
+            creationMatiere.setOnSucceeded(a -> {
 
                 statusMat.setText("Enregistrement réussie ");
                 statusMat.setTextFill(Color.GREEN);
@@ -94,7 +94,7 @@ public class EnseignantController implements Initializable{
                 getComboMatiere();
 
             });
-            creationMatiere.setOnFailed( a -> {
+            creationMatiere.setOnFailed(a -> {
                 statusMat.setText("Erreur pendant l'enregistrement ");
                 statusMat.setTextFill(Color.RED);
                 statusMat.setText("");
@@ -103,10 +103,68 @@ public class EnseignantController implements Initializable{
         });
         //Get Matière to fill ComboBox
         getComboMatiere();
+        //Get Enseignant to fill ComboBox
+        getComboEnseignant();
+
+        //fill the table
+        fetchEnseignement();
+
+
+        ///////FAIRE LES ASSOC ENSEIGNANT MATIERE////////////
+        validerAssociation.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+            //reccupere la valeur de l'index de l'enseignant dans la comboBox
+            String comboEnseignant = String.valueOf(comboEns.getValue());
+            String idEnseignant = String.valueOf(comboEnseignant.charAt(0));
+            selectedEnseiMat.setText(idEnseignant);
+            //reccupere la valeur de l'index de la matiere dans la comboBox
+            String comboMatiere = String.valueOf(comboMat.getValue());
+            String idMatiere = String.valueOf(comboMatiere.charAt(0));
+            selectMatmat.setText(idMatiere);
+            statusMat.setText("");
+
+            GluonObservableObject<Enseignant> enseignantSelected = getAllEnseignantbyID(idEnseignant);
+
+            enseignantSelected.setOnSucceeded(enseignant -> {
+
+                GluonObservableObject<Matiere> matiereSelected = getAllMatierebyID(idMatiere);
+
+                matiereSelected.setOnSucceeded(matiere -> {
+
+                    Enseignement enseignement = new Enseignement(enseignantSelected.get(), matiereSelected.get());
+                    System.out.println(enseignement.toString());
+
+                    GluonObservableObject<Enseignement> association = associationEnSMat(enseignement);
+                    association.setOnSucceeded(a -> {
+                        statusMat.setText("Association effectuée ");
+                        status.setTextFill(Color.GREEN);
+
+                    });
+                    association.setOnFailed(a -> {
+                        statusMat.setText("Erreur pendant l'enregistrement ");
+                        statusMat.setTextFill(Color.RED);
+                        statusMat.setText("");
+                    });
+
+                });
+                matiereSelected.setOnFailed(matiere -> {
+                    statusMat.setText("Erreur pendant la recherche de la matière ");
+                    statusMat.setTextFill(Color.RED);
+                });
+
+            });
+            enseignantSelected.setOnFailed(enseignant -> {
+                statusMat.setText("Erreur pendant la recherche de l'enseignant ");
+                statusMat.setTextFill(Color.RED);
+            });
+
+
+        });
+
         ///RECUPERATION DES INFOMATION DE L'UTILISATEUR//////////
-        if(LoginController.isUserExist.get().getId() != 0) {
+        if (LoginController.isUserExist.get().getId() != 0) {
             GluonObservableObject<User> userInfo = getUserById(1);
-            userInfo.setOnSucceeded( a -> {
+            userInfo.setOnSucceeded(a -> {
                 NomEns.setText(userInfo.get().getLogin());
                 Etablissement nomEtablissement;
                 nomEtablissement = userInfo.get().getEtablissement();
@@ -114,7 +172,7 @@ public class EnseignantController implements Initializable{
                 //logo.setImage(new Image("../resources/icons/about.png"));
 
             });
-            userInfo.setOnFailed( a -> {
+            userInfo.setOnFailed(a -> {
                 status.setText("Erreur pendant le chargement des données");
                 status.setTextFill(Color.RED);
             });
@@ -124,7 +182,7 @@ public class EnseignantController implements Initializable{
 
 
         idButtonValiderEns.getStyleClass().setAll("btn", "btn-primary");
-        idButtonResetEns.getStyleClass().setAll("btn","btn-danger");
+        idButtonResetEns.getStyleClass().setAll("btn", "btn-danger");
 
         //////////////////ClIQUER ET SELECTIONNER/////////////////////////////////
         ///SELECTION DES CHAMPS POUR UPDATE
@@ -136,13 +194,13 @@ public class EnseignantController implements Initializable{
             Enseignant enseignant = new Enseignant();
             enseignant.setNom(idNomEnseignant.getText());
             enseignant.setDateDeNaissance(String.valueOf(DateNaissance.getValue()));
-            if(ensID.getText() != "") {
+            if (ensID.getText() != "") {
                 enseignant.setIdEns(Integer.parseInt(ensID.getText()));
             }
             //GERE LA CREATION d'UN VEHICULE
             GluonObservableObject<Enseignant> EnseignantCreated = createEnseignant(enseignant);
 
-            EnseignantCreated.setOnSucceeded( a -> {
+            EnseignantCreated.setOnSucceeded(a -> {
 
                 status.setText("Enregistrement réussie ");
                 status.setTextFill(Color.GREEN);
@@ -153,7 +211,7 @@ public class EnseignantController implements Initializable{
                 ensID.setText("");
 
             });
-            EnseignantCreated.setOnFailed( a -> {
+            EnseignantCreated.setOnFailed(a -> {
                 status.setText("Erreur pendant l'enregistrement ");
                 status.setTextFill(Color.RED);
                 status.setText("");
@@ -161,35 +219,48 @@ public class EnseignantController implements Initializable{
 
         });
         fetchEnseignant();
-        }
+    }
 
-   /* private void getComboEnseignant() {
-        GluonObservableList<Enseignant> matieres = getAllMatiere();
-        matieres.setOnSucceeded( a -> {
-            List<String> nomEtablissement = new ArrayList<String>();
-            nomEtablissement = matieres.stream().map(c -> c.getId() + "- " + c.getNom()).toList();
-            comboMat.getItems().addAll(nomEtablissement);
-            comboMat.getSelectionModel().selectLast();
+    private GluonObservableObject<Enseignant> getAllEnseignantbyID(String idEnseignant) {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8081/api/enseignant/" + idEnseignant)
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveObject(client.createObjectDataReader(Enseignant.class));
+    }
+
+    private GluonObservableObject<Matiere> getAllMatierebyID(String idMatiere) {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8081/api/matiere/" + idMatiere)
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveObject(client.createObjectDataReader(Matiere.class));
+    }
+
+
+    private void getComboEnseignant() {
+        GluonObservableList<Enseignant> enseignants = getAllEnseignant();
+        enseignants.setOnSucceeded(a -> {
+            comboEns.getItems().addAll(enseignants);
+            comboEns.getSelectionModel().selectLast();
 
         });
-        matieres.setOnFailed( a -> {
-            status.setText("Erreur pendant la recherche des matières ");
-            status.setTextFill(Color.RED);
+        enseignants.setOnFailed(a -> {
+            statusMat.setText("Erreur pendant la recherche des enseignants ");
+            statusMat.setTextFill(Color.RED);
         });
     }
 
-    */
 
     private void getComboMatiere() {
         GluonObservableList<Matiere> matieres = getAllMatiere();
-        matieres.setOnSucceeded( a -> {
-            List<String> nomEtablissement = new ArrayList<String>();
-            nomEtablissement = matieres.stream().map(c -> c.getId() + "- " + c.getNom()).toList();
-            comboMat.getItems().addAll(nomEtablissement);
+        matieres.setOnSucceeded(a -> {
+            comboMat.getItems().addAll(matieres);
             comboMat.getSelectionModel().selectLast();
-
         });
-        matieres.setOnFailed( a -> {
+        matieres.setOnFailed(a -> {
             status.setText("Erreur pendant la recherche des matières ");
             status.setTextFill(Color.RED);
         });
@@ -244,10 +315,10 @@ public class EnseignantController implements Initializable{
     private GluonObservableObject<User> getUserById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/users/" +id)
+                .host("http://localhost:8081/api/users/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
-        return  DataProvider.retrieveObject(client.createObjectDataReader(User.class));
+        return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
     }
 
     ///////////ONGLET MATIERE ASSCIATION//////////
@@ -278,11 +349,10 @@ public class EnseignantController implements Initializable{
     */
 
 
-
-    private GluonObservableObject<Enseignement> createEnseignement(Enseignement tableMatiereEnseignant) {
+    private GluonObservableObject<Enseignement> associationEnSMat(Enseignement tableMatiereEnseignant) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/enseignant/")
+                .host("http://localhost:8081/api/enseignement/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(tableMatiereEnseignant))
@@ -297,9 +367,8 @@ public class EnseignantController implements Initializable{
                 .host("http://localhost:8081/api/matiere")
                 .connectTimeout(10000)
                 .readTimeout(10000);
-        return  DataProvider.retrieveList(client.createListDataReader(Matiere.class));
+        return DataProvider.retrieveList(client.createListDataReader(Matiere.class));
     }
-
 
     private void fetchEnseignant() {
         GluonObservableList<Enseignant> enseignants = getAllEnseignant();
@@ -307,14 +376,42 @@ public class EnseignantController implements Initializable{
         colonneNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colonneDate.setCellValueFactory(new PropertyValueFactory<>("dateDeNaissance"));
 
-        enseignants.setOnSucceeded( e -> {
+        enseignants.setOnSucceeded(e -> {
             listeEnseignant.setItems(enseignants);
         });
-        enseignants.setOnFailed( e -> {
+        enseignants.setOnFailed(e -> {
             status.setText("Erreur de chargement ");
             status.setTextFill(Color.RED);
         });
 
+    }
+
+    private void fetchEnseignement() {
+        GluonObservableList<Enseignement> enseignement = getAllEnseignementt();
+
+        colonneNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colonneDate.setCellValueFactory(new PropertyValueFactory<>("codeMat"));
+
+        List<Enseignement> ens = enseignement.stream().toList();
+        System.out.println(ens);
+
+        enseignement.setOnSucceeded(e -> {
+            tableAssosEM.setItems(enseignement);
+        });
+        enseignement.setOnFailed(e -> {
+            status.setText("Erreur de chargement ");
+            status.setTextFill(Color.RED);
+        });
+
+    }
+
+    private GluonObservableList<Enseignement> getAllEnseignementt() {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8081/api/enseignement")
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveList(client.createListDataReader(Enseignement.class));
     }
 
     private GluonObservableList<Enseignant> getAllEnseignant() {
@@ -323,7 +420,7 @@ public class EnseignantController implements Initializable{
                 .host("http://localhost:8081/api/enseignant")
                 .connectTimeout(10000)
                 .readTimeout(10000);
-        return  DataProvider.retrieveList(client.createListDataReader(Enseignant.class));
+        return DataProvider.retrieveList(client.createListDataReader(Enseignant.class));
     }
 
     private GluonObservableObject createEnseignant(Enseignant enseignant) {
