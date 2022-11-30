@@ -1,6 +1,5 @@
 package com.thales.ajc.projet;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.gluonhq.connect.GluonObservableList;
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
@@ -9,6 +8,7 @@ import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.Etablissement;
 import com.thales.ajc.projet.modele.Matiere;
 import com.thales.ajc.projet.modele.SalleDeClasse;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,6 +44,10 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private TextField idMatiereExcluesSalle;
     @FXML
+    private TextField idIDSalle;
+    @FXML
+    private ComboBox idComboEtablissement;
+    @FXML
     private Button idButtonResetSalle;
     @FXML
     private Button idButtonValiderSalle;
@@ -55,11 +60,38 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private TableColumn idColumnNomSalleMatiere;
     @FXML
-    private TableColumn idColumnCouleurSalleMatiere;
+    private TextField idRechercheSalle;
+    @FXML
+    private TableView listSalleClasse;
+    @FXML
+    private TableColumn idColumnNomSalle;
+    @FXML
+    private TableColumn idColumnCapaciteSalle;
+    @FXML
+    private TableColumn idColumnMatiereExclus;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //REDIRECTION VERS PROFFESSEUR
+        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Enseignant");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        //REDIRECTION VERS Salle De Classe
+        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Etablissement");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         idButtonValiderSalle.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetSalle.getStyleClass().setAll("btn", "btn-warning");
 
@@ -68,20 +100,29 @@ public class SalleDeClasseController implements Initializable {
 
         //REINITIALISATION DES CHAMPS
         idButtonResetSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            idIDSalle.setText("");
             idNomSalle.setText("");
             idCapaciteSalle.setText("");
             idMatiereExcluesSalle.setText("");
         });
 
+        //Recupération des données dans la bdd
+        GluonObservableList<SalleDeClasse> salle = getAllSalleDeClasse();
 
-        GluonObservableList<SalleDeClasse> salleDeClasse = getAllSalleDeClasse();
+        //ComboBox d'établissement :
+        ObservableList<String> dataCombo = FXCollections.observableArrayList("Etablissement 1","Etablissement 2");
+        idComboEtablissement.getItems().addAll(dataCombo);
+        idComboEtablissement.getSelectionModel().selectFirst();
 
+        //Creation d'une salle de classe
         idButtonValiderSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             SalleDeClasse salleDeClasses = new SalleDeClasse();
 
+            salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
             salleDeClasses.setNom(idNomSalle.getText());
             salleDeClasses.setCapacite(idCapaciteSalle.getText());
             salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
+            salleDeClasses.setEtablissement((Etablissement) idComboEtablissement.getSelectionModel().getSelectedItem());
 
 
             GluonObservableObject salleDeClasseCreated = createSalleDeClasse(salleDeClasses);
@@ -103,8 +144,6 @@ public class SalleDeClasseController implements Initializable {
         GluonObservableList<Matiere> matiereExclus = getAllMatiere();
 
         idColumnNomSalleMatiere.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        idColumnCouleurSalleMatiere.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-
 
         matiereExclus.setOnSucceeded( e -> {
             listeSalleMatieres.setItems(matiereExclus);
@@ -165,7 +204,6 @@ public class SalleDeClasseController implements Initializable {
                         ObservableList<? extends Matiere> SelectedMatiereExclus = change.getList();
                         //ATTRIBUTION DES VALEURS DANS LES CHAMPS CORRESPONDANT
                         idMatiereExcluesSalle.setText(SelectedMatiereExclus.get(0).getNom());
-
 
                     }
                 });

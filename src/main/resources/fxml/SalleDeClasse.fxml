@@ -34,6 +34,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -142,7 +143,7 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <HBox prefHeight="277.0" prefWidth="633.0">
+                              <HBox layoutX="2.0" prefHeight="277.0" prefWidth="629.0">
                                  <children>
                                     <VBox prefHeight="277.0" prefWidth="314.0">
                                        <children>
@@ -154,27 +155,28 @@
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <GridPane prefHeight="160.0" prefWidth="274.0">
+                                          <GridPane prefHeight="342.0" prefWidth="274.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="109.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="165.0" />
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="42.19998779296875" minHeight="10.0" prefHeight="32.60001220703125" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="42.19999389648437" minHeight="10.0" prefHeight="32.60001220703125" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="43.79999084472655" minHeight="10.0" prefHeight="30.400006103515636" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="46.80000610351563" minHeight="10.0" prefHeight="34.40000610351562" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="51.79998168945312" minHeight="10.0" prefHeight="28.79999389648438" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " />
-                                                <Label text="Capacité" GridPane.rowIndex="1" />
-                                                <Label text="Matières exclues" GridPane.rowIndex="2" />
-                                                <TextField fx:id="idNomSalle" prefHeight="33.0" prefWidth="175.0" GridPane.columnIndex="1" />
-                                                <TextField fx:id="idCapaciteSalle" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="idMatiereExcluesSalle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " GridPane.rowIndex="1" />
+                                                <Label text="Capacité" GridPane.rowIndex="2" />
+                                                <Label text="Matières exclues" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idNomSalle" prefHeight="19.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="idCapaciteSalle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="idMatiereExcluesSalle" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -195,6 +197,10 @@
                                                          </font></Button>
                                                    </children>
                                                 </GridPane>
+                                                <Label text="Etablissement" GridPane.rowIndex="4" />
+                                                <ComboBox fx:id="idComboEtablissement" prefHeight="26.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="ID Salle de classe" />
+                                                <TextField fx:id="idIDSalle" disable="true" editable="false" prefHeight="19.0" prefWidth="166.0" promptText="ID Salle de classe" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane>
@@ -220,40 +226,38 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="277.0" prefWidth="287.0">
+                                    <VBox prefHeight="277.0" prefWidth="164.0">
                                        <children>
                                           <GridPane>
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <TextField fx:id="idRechercheMatiere" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="Recherche :" GridPane.rowIndex="1" />
+                                                <Label />
+                                                <Label prefHeight="20.0" prefWidth="125.0" text="Liste des matières :">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="15.0" left="15.0" top="20.0" />
+                                                   </opaqueInsets>
+                                                </Label>
                                              </children>
                                           </GridPane>
-                                          <Label text="Liste des matières">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <opaqueInsets>
-                                                <Insets bottom="15.0" left="15.0" top="20.0" />
-                                             </opaqueInsets>
-                                          </Label>
-                                          <TableView fx:id="listeSalleMatieres">
+                                          <TableView fx:id="listeSalleMatieres" prefHeight="179.0" prefWidth="96.0">
                                              <columns>
-                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="104.80004692077637" text="Nom" />
-                                                <TableColumn fx:id="idColumnCouleurSalleMatiere" prefWidth="113.60001373291016" text="Couleur" />
+                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="107.0" text="Nom" />
                                              </columns></TableView>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
                                     </VBox>
                                  </children>
                               </HBox>
@@ -266,47 +270,46 @@
                            <children>
                               <HBox prefHeight="277.0" prefWidth="633.0">
                                  <children>
-                                    <VBox prefHeight="277.0" prefWidth="314.0">
+                                    <VBox prefHeight="278.0" prefWidth="715.0">
                                        <children>
-                                          <Label text="Paramétrage Etablissement :">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <opaqueInsets>
-                                                <Insets bottom="15.0" left="15.0" top="20.0" />
-                                             </opaqueInsets>
-                                          </Label>
                                           <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="81.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="279.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="200.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="16.60001220703125" minHeight="8.600012207031249" prefHeight="8.600012207031249" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="34.19998779296874" minHeight="10.0" prefHeight="34.19998779296874" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <TextField fx:id="idTypeEtablissement1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="idTelEtablissement1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="idLogoEtablissement1" promptText="changer pour logo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                </GridPane>
+                                                <Label text="Rechercher une salle :" GridPane.rowIndex="2">
+                                                   <padding>
+                                                      <Insets left="140.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="idRechercherSalle" prefHeight="25.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label prefHeight="20.0" prefWidth="227.0" text="Liste des Salle de Classe  :">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="15.0" left="15.0" top="20.0" />
+                                                   </opaqueInsets>
+                                                </Label>
                                              </children>
                                           </GridPane>
+                                          <TableView fx:id="listSalleClasse" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                              <TableColumn fx:id="idColumnNomSalle" prefWidth="83.0" text="Nom" />
+                                              <TableColumn fx:id="idColumnCapaciteSalle" prefWidth="111.0" text="Capacité" />
+                                                <TableColumn fx:id="idColumnMatiereExclus" prefWidth="119.0" text="Matières exclus" />
+                                                <TableColumn fx:id="idColumnEtablissement" prefWidth="107.0" text="Etablissement" />
+                                            </columns>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </TableView>
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -314,14 +317,6 @@
                                     </VBox>
                                     <VBox prefHeight="277.0" prefWidth="310.0">
                                        <children>
-                                          <Label text="Section 2 : ">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <opaqueInsets>
-                                                <Insets bottom="15.0" left="15.0" top="20.0" />
-                                             </opaqueInsets>
-                                          </Label>
                                           <GridPane>
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -334,14 +329,6 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
-                                             <children>
-                                                <Label text="Label" GridPane.rowIndex="1" />
-                                                <Label text="Label" GridPane.rowIndex="2" />
-                                                <Label text="Label" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                             </children>
                                           </GridPane>
                                        </children>
                                        <padding>
@@ -411,7 +398,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" text="Tool1">
+                  <Button fx:id="idButtonDeleteSalle" mnemonicParsing="false" text="Tool1">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>

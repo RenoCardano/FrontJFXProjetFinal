@@ -4,7 +4,7 @@ public class SalleDeClasse {
     private String nom;
     private String capacite;
     private String matiereExcluClasse;
-    private Etablissement etablissement;
+    private String etablissement;
     private int idSalleClasse;
 
     public SalleDeClasse(){
@@ -14,7 +14,7 @@ public class SalleDeClasse {
         this.nom = nom;
         this.capacite = capacite;
         this.matiereExcluClasse = matiereExcluClasse;
-        this.etablissement = etablissement;
+        this.etablissement = String.valueOf(etablissement);
         this.idSalleClasse = idSalleClasse;
     }
 
@@ -40,6 +40,22 @@ public class SalleDeClasse {
 
     public void setMatiereExcluClasse(String matiereExcluClasse) {
         this.matiereExcluClasse = matiereExcluClasse;
+    }
+
+    public String getEtablissement() {
+        return etablissement;
+    }
+
+    public void setEtablissement(Etablissement etablissement) {
+        this.etablissement = String.valueOf(etablissement);
+    }
+
+    public int getIdSalleClasse() {
+        return idSalleClasse;
+    }
+
+    public void setIdSalleClasse(int idSalleClasse) {
+        this.idSalleClasse = idSalleClasse;
     }
 
     @Override
