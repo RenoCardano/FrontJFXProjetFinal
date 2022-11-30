@@ -55,7 +55,7 @@ public class EnseignantController implements Initializable{
     @FXML
     private TableView listeEnseignant, tableAssosEM;
     @FXML
-    private Label status, nomEta, NomEns;
+    private Label status, nomEta, NomEns, statusMat;
     @FXML
     private TextField idNomEnseignant,ensID, idTelEnseignant,  nomMat, codeMat;
     @FXML
@@ -72,19 +72,7 @@ public class EnseignantController implements Initializable{
 
         ///////////////////GESTION DES MATIERES ET ASSOCIATION MAT/ENS
 
-        //Get Matière to fill ComboBox
-        GluonObservableList<Matiere> matieres = getAllMatiere();
-        matieres.setOnSucceeded( a -> {
-                List<String> nomEtablissement = new ArrayList<String>();
-                nomEtablissement = matieres.stream().map(c -> c.getId() + "- " + c.getNom()).toList();
-                comboMat.getItems().addAll(nomEtablissement);
-                 comboMat.getSelectionModel().selectFirst();
 
-        });
-        matieres.setOnFailed( a -> {
-            status.setText("Erreur pendant la recherche des matières ");
-            status.setTextFill(Color.RED);
-        });
 
         //CREATION D'UNE MATIERE
         creationMat.addEventHandler(MouseEvent.MOUSE_CLICKED, m -> {
@@ -97,9 +85,24 @@ public class EnseignantController implements Initializable{
 
             GluonObservableObject<Matiere> creationMatiere = createMat(matiere);
 
+            creationMatiere.setOnSucceeded( a -> {
+
+                statusMat.setText("Enregistrement réussie ");
+                statusMat.setTextFill(Color.GREEN);
+                statusMat.setText("");
+                comboMat.setValue(null);
+                getComboMatiere();
+
+            });
+            creationMatiere.setOnFailed( a -> {
+                statusMat.setText("Erreur pendant l'enregistrement ");
+                statusMat.setTextFill(Color.RED);
+                statusMat.setText("");
+            });
 
         });
-
+        //Get Matière to fill ComboBox
+        getComboMatiere();
         ///RECUPERATION DES INFOMATION DE L'UTILISATEUR//////////
         if(LoginController.isUserExist.get().getId() != 0) {
             GluonObservableObject<User> userInfo = getUserById(1);
@@ -159,6 +162,38 @@ public class EnseignantController implements Initializable{
         });
         fetchEnseignant();
         }
+
+   /* private void getComboEnseignant() {
+        GluonObservableList<Enseignant> matieres = getAllMatiere();
+        matieres.setOnSucceeded( a -> {
+            List<String> nomEtablissement = new ArrayList<String>();
+            nomEtablissement = matieres.stream().map(c -> c.getId() + "- " + c.getNom()).toList();
+            comboMat.getItems().addAll(nomEtablissement);
+            comboMat.getSelectionModel().selectLast();
+
+        });
+        matieres.setOnFailed( a -> {
+            status.setText("Erreur pendant la recherche des matières ");
+            status.setTextFill(Color.RED);
+        });
+    }
+
+    */
+
+    private void getComboMatiere() {
+        GluonObservableList<Matiere> matieres = getAllMatiere();
+        matieres.setOnSucceeded( a -> {
+            List<String> nomEtablissement = new ArrayList<String>();
+            nomEtablissement = matieres.stream().map(c -> c.getId() + "- " + c.getNom()).toList();
+            comboMat.getItems().addAll(nomEtablissement);
+            comboMat.getSelectionModel().selectLast();
+
+        });
+        matieres.setOnFailed( a -> {
+            status.setText("Erreur pendant la recherche des matières ");
+            status.setTextFill(Color.RED);
+        });
+    }
 
     private GluonObservableObject<Matiere> createMat(Matiere matiere) {
         RestClient client = RestClient.create()
