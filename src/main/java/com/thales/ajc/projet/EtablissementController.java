@@ -10,11 +10,14 @@ import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.Etablissement;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +65,12 @@ public class EtablissementController implements Initializable {
     private TableColumn idColumnTelEtablissement;
     @FXML
     private Label fetchStatus;
+    @FXML
+    private TextField idRechercheEtablissement;
+    @FXML
+    private TextField idIDEtablissement;
+    @FXML
+    private Button idDeleteEtablissement;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,10 +84,18 @@ public class EtablissementController implements Initializable {
             }
         });
 
-
+        //REDIRECTION VERS Salle De Classe
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "SalleDeClasse");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
         idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
+
 
         ///SELECTION DES CHAMPS POUR UPDATE
         HandleSelectedTab();
@@ -86,37 +103,109 @@ public class EtablissementController implements Initializable {
         //REINITIALISATION DES CHAMPS
         idButtonResetEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             idNomEtablissement.setText("");
+            idNomEtablissement.setText("");
             idAdresseEtablissement.setText("");
             idTypeEtablissement.setText("");
             idTelEtablissement.setText("");
+            idLogoEtablissement.setText("");
         });
 
+        //Supp un Etablissement
+        idDeleteEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            GluonObservableObject<Boolean> response = deleteEtablissement(idIDEtablissement.getText());
+            response.setOnSucceeded( x-> {
+                idIDEtablissement.setText("");
+                idNomEtablissement.setText("");
+                idAdresseEtablissement.setText("");
+                idTypeEtablissement.setText("");
+                idTelEtablissement.setText("");
+                idLogoEtablissement.setText("");
+                fetchStatus.setText("Enregistrement OK");
+            });
+            response.setOnFailed( x-> {
+                System.out.println(response.get().booleanValue());
+                fetchStatus.setText("Echec de l'enregistrement");
+            });
+        });
 
+        //Recupération des données dans la bdd
         GluonObservableList<Etablissement> etablissements = getAllEtablissement();
+
+        //ON CREE UNE LISTE FILTRER
+        FilteredList<Etablissement> filteredData = new FilteredList<>(etablissements, b -> true);
+
+        idRechercheEtablissement.textProperty().addListener((observalble, oldText, newText) -> {
+
+            filteredData.setPredicate(e -> {
+                //comparer le nom et le type du tableau avec l'input de recherche
+                String lowerCaseFilter = newText.toLowerCase();
+                //recherche par Nom ou Type d'établissement
+                String fullName = ((e.getNom()+e.getType()).toLowerCase());
+                if(fullName.contains(lowerCaseFilter)){
+                    return true;
+                }
+                return false;
+            });
+            //je sors la liste filtrée dans une sorted list
+            SortedList<Etablissement> sortedData = new SortedList<>(filteredData);
+
+            //Bind the sorted list comparator to the table view
+            sortedData.comparatorProperty().bind(listeEtablissement.comparatorProperty());
+
+            //Add the refreshed sorted data to the table
+            listeEtablissement.setItems(sortedData);
+        });
 
         idButtonValiderEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             Etablissement etablissement = new Etablissement();
 
+            etablissement.setIdEtablissement(Integer.parseInt(idIDEtablissement.getText()));
             etablissement.setNom(idNomEtablissement.getText());
             etablissement.setAdresse(idAdresseEtablissement.getText());
             etablissement.setNumeroTelephone(idTelEtablissement.getText());
             etablissement.setType(idTypeEtablissement.getText());
             etablissement.setLogo(idLogoEtablissement.getText());
 
+            if (idIDEtablissement.getText() != "") {
+                etablissement.setIdEtablissement(Integer.parseInt(idIDEtablissement.getText()));
+                System.out.println(etablissement.getIdEtablissement());
+            }
+            //CETTE FCT UPDATE SI DEJA CREEE
+            GluonObservableObject<Etablissement> etablissementCreated = createEtablissement(etablissement);
 
-            GluonObservableObject etablissementCreated = createEtablissement(etablissement);
-
-            etablissementCreated.setOnSucceeded( a -> {
-                        fetchStatus.setText("Enregistrement réussie");
-
-                        listeEtablissement.setItems(null);
-                        fetchEtablissement();
-                    });
-                etablissementCreated.setOnFailed( a -> {
-                    fetchStatus.setText("Erreur pendant l'enregistrement");
-                });
+            etablissementCreated.setOnSucceeded(a -> {
+                fetchStatus.setText("Enregistrement effectué");
+                fetchStatus.setTextFill(Color.GREEN);
             });
-            fetchEtablissement();
+            etablissementCreated.setOnFailed(a -> {
+                fetchStatus.setText("Erreur pendant l'enregistrement effectué");
+                fetchStatus.setTextFill(Color.RED);
+            });
+
+            /*
+                Mets a jours la liste après une insertion
+             */
+            listeEtablissement.setItems(null);
+            GluonObservableList<Etablissement> refresh = null;
+            refresh = getAllEtablissement();
+            GluonObservableList<Etablissement> finalRefresh = refresh;
+            refresh.setOnSucceeded(connectStateEvent -> {
+                listeEtablissement.setItems(finalRefresh);
+            });
+
+        });
+        fetchEtablissement();
+
+    }
+
+    private GluonObservableObject<Boolean> deleteEtablissement(String id) {
+        RestClient client = RestClient.create()
+                .method("DELETE")
+                .host("http://localhost:8081/api/etablissement/delete/"+ id)
+                .connectTimeout(20000)
+                .readTimeout(20000);
+
+        return DataProvider.retrieveObject(client.createObjectDataReader(Boolean.class));
     }
 
     private void fetchEtablissement() {
@@ -176,10 +265,12 @@ public class EtablissementController implements Initializable {
                             Change<? extends Etablissement> change) {
                         ObservableList<? extends Etablissement> SelectedEtablissement = change.getList();
                         //ATTRIBUTION DES VALEURS DANS LES CHAMPS CORRESPONDANT
+                        idIDEtablissement.setText(String.valueOf(SelectedEtablissement.get(0).getIdEtablissement()));
                         idNomEtablissement.setText(SelectedEtablissement.get(0).getNom());
                         idAdresseEtablissement.setText(SelectedEtablissement.get(0).getAdresse());
                         idTypeEtablissement.setText(SelectedEtablissement.get(0).getType());
                         idTelEtablissement.setText(SelectedEtablissement.get(0).getNumeroTelephone());
+                        idLogoEtablissement.setText(SelectedEtablissement.get(0).getLogo());
 
                     }
                 });
