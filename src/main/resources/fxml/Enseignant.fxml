@@ -59,7 +59,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
+<BorderPane stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
    <right>
       <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
@@ -141,7 +141,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="logo" fitHeight="104.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="logo" fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="nomEta" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="129.0" text="Nom du Lycée" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />

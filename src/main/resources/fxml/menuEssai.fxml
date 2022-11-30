@@ -32,17 +32,33 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="435.0" prefWidth="786.0" style="--bs-danger: red; -fx-background-color: green;" stylesheets="@../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="455.0" prefWidth="187.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="100.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="126.0" prefWidth="147.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -115,19 +131,19 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane>
+            <AnchorPane prefHeight="255.0" prefWidth="784.0">
                <children>
-                  <TabPane tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutX="62.0" layoutY="48.0" prefHeight="261.0" prefWidth="489.0" style="-fx-border-color: green; -fx-background-color: green; -fx-view-order: green; -fx-translate-z: green; -fx-spacing: green; -fx-border-image-insets: green; -fx-border-insets: green; -fx-tab-min-height: green; -fx-padding: green; -fx-blend-mode: green; -fx-border-width: green; -fx-effect: green; -fx-border-style: green; -fx-managed: green; -fx-opacity: green; -fx-focus-traversable: green; -fx-opaque-insets: green; -fx-max-height: green; -fx-region-background: green; -fx-region-border: green; -fx-scale-shape: green;" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
-                        <Tab text="Untitled Tab 1">
+                        <Tab style="-fx-background-color: green; -fx-border-color: green;" styleClass="-fx-background-color" text="Untitled Tab 1">
                            <content>
-                              <AnchorPane>
+                              <AnchorPane prefHeight="394.0" prefWidth="533.0" style="-fx-background-color: green;">
                                  <children>
-                                    <HBox prefHeight="277.0" prefWidth="633.0">
+                                    <HBox layoutY="-33.0" prefHeight="427.0" prefWidth="633.0" style="-fx-background-color: green; -fx-view-order: green; -fx-translate-z: green; -fx-spacing: green; -fx-border-image-insets: green; -fx-border-insets: green;" stylesheets="@../Bootstrap/css/BoostrapContactForm.css">
                                        <children>
-                                          <VBox prefHeight="277.0" prefWidth="314.0">
+                                          <VBox prefHeight="371.0" prefWidth="244.0" style="-fx-background-color: green; -fx-border-color: black;">
                                              <children>
-                                                <Label text="Paramétrage Etablissement :">
+                                                <Label prefHeight="40.0" prefWidth="175.0" text="Paramétrage Etablissement :">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -157,19 +173,67 @@
                                                       <TextField fx:id="idAdresseEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <TextField fx:id="idTypeEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="Télephone" GridPane.rowIndex="3" />
-                                                      <TextField fx:id="idTelEtablissement" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                      <TextField fx:id="idTelEtablissement" style="-fx-background-color: green; -fx-view-order: green;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <stylesheets>
+                                                            <URL value="@../Bootstrap/css/bootstrap.min.css" />
+                                                            <URL value="@../Bootstrap/css/bootstrap9.css" />
+                                                            <URL value="@../Bootstrap/css/BoostrapContactForm.css" />
+                                                         </stylesheets></TextField>
                                                       <TextField fx:id="idLogoEtablissement" promptText="changer pour logo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <Button fx:id="idButtonValiderEtablissement" mnemonicParsing="false" text="Valider" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                      <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                      <Button fx:id="idButtonResetEtablissement" mnemonicParsing="false" text="Réinitialiser" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                                      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Button fx:id="idButtonResetEtablissement" mnemonicParsing="false" text="Réinitialiser" GridPane.rowIndex="6" />
+                                                            <Button fx:id="idButtonValiderEtablissement" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #009900;" text="Valider" textFill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                            </Button>
+                                                         </children>
+                                                      </GridPane>
                                                    </children>
                                                 </GridPane>
                                              </children>
                                              <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                              </padding>
+                                             <stylesheets>
+                                                <URL value="@../Bootstrap/css/bootstrap3.css" />
+                                                <URL value="@../Bootstrap/css/bootstrap.min.css" />
+                                             </stylesheets>
+                                             <styleClass>
+                                                <String fx:value="accordion" />
+                                                <String fx:value="bar" />
+                                                <String fx:value="arrow" />
+                                                <String fx:value="box" />
+                                                <String fx:value="check" />
+                                                <String fx:value="check-menu-item" />
+                                                <String fx:value="column-drag-header" />
+                                             </styleClass>
                                           </VBox>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="track-background" />
+                                          <String fx:value="check-menu-item" />
+                                          <String fx:value="container" />
+                                          <String fx:value="color-palette" />
+                                          <String fx:value="action-btn" />
+                                       </styleClass>
                                     </HBox>
                                  </children>
                               </AnchorPane>
@@ -182,4 +246,38 @@
          </children>
       </VBox>
    </top>
+   <styleClass>
+      <String fx:value="color-palette" />
+      <String fx:value="accordion" />
+      <String fx:value="color-picker" />
+      <String fx:value="combo-box" />
+      <String fx:value="column-drag-header" />
+      <String fx:value="context-menu" />
+      <String fx:value="control-box" />
+      <String fx:value="left-container" />
+      <String fx:value="date-picker" />
+      <String fx:value="dot" />
+      <String fx:value="container" />
+      <String fx:value="label" />
+      <String fx:value="action-btn" />
+      <String fx:value="arrow" />
+      <String fx:value="check-box" />
+      <String fx:value="box" />
+      <String fx:value="danger" />
+      <String fx:value="color-palette" />
+      <String fx:value="column-drag-header" />
+      <String fx:value="context-menu" />
+      <String fx:value="filler" />
+      <String fx:value="separator" />
+      <String fx:value="pagination-control" />
+      <String fx:value="decrement-button" />
+      <String fx:value="track-background" />
+      <String fx:value="menu-bar" />
+      <String fx:value="radio-menu-item" />
+      <String fx:value="pagination" />
+      <String fx:value="info" />
+      <String fx:value="label" />
+      <String fx:value="slider" />
+      <String fx:value="track-background" />
+   </styleClass>
 </BorderPane>
