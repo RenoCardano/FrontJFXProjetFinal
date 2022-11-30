@@ -338,6 +338,7 @@
                                                 <ColorPicker fx:id="colorPicker" prefWidth="177.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
+                                          <Label fx:id="statusMat" prefHeight="17.0" prefWidth="247.0" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
