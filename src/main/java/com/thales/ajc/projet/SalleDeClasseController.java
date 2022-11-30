@@ -138,6 +138,7 @@ public class SalleDeClasseController implements Initializable {
             });
         });
         fetchSalleDeClasse();
+
     }
 
     private void fetchSalleDeClasse() {

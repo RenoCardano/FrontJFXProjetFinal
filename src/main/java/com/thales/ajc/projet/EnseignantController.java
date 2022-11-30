@@ -55,15 +55,17 @@ public class EnseignantController implements Initializable {
     private
     TableColumn<Enseignement, String> TabCodMat  = new TableColumn<Enseignement, String>("Matières");
     @FXML
-    private Button idButtonValiderEns, idButtonResetEns, validerAssociation, delMat;
+    private Button idButtonValiderEns, idButtonResetEns, validerAssociation, idBoutonSalle, delMat;
     @FXML
-    private Button creationMat;
+    private Button creationMat,idBoutonMatiere, idBoutonProfesseur,
+            idBoutonJour, idBoutonUtilisateur;
     @FXML
     private TableView listeEnseignant, tableAssosEM;
     @FXML
     private Label status, nomEta, NomEns, statusMat;
     @FXML
-    private TextField idNomEnseignant, ensID, nomMat, codeMat, selectedEnseiMat, selectMatmat;
+    private TextField idNomEnseignant, ensID, nomMat, codeMat, selectMatmat;
+
     @FXML
     private DatePicker DateNaissance;
     @FXML
@@ -76,7 +78,39 @@ public class EnseignantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ///////////////////GESTION DES MATIERES ET ASSOCIATION MAT/ENS
+        //REDIRECTION VERS CLASSE
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "SalleDeClasse");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Enseignant");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+      /*  idBoutonUtilisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Utilisateur");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+       */
+
 
 
         //CREATION D'UNE MATIERE
@@ -84,9 +118,7 @@ public class EnseignantController implements Initializable {
             Matiere matiere = new Matiere();
             matiere.setNom(nomMat.getText());
             matiere.setCodeMat(codeMat.getText());
-            System.out.println(colorPicker.getValue());
             matiere.setCouleur(String.valueOf(colorPicker.getValue()));
-            System.out.println(matiere.getCouleur());
 
             GluonObservableObject<Matiere> creationMatiere = createMat(matiere);
 
@@ -164,6 +196,14 @@ public class EnseignantController implements Initializable {
             //TODO rafraichir les selection tab assoc, comobox, couleur
 
         });
+        //REINITIALISATION DES CHAMPS
+        idButtonResetEns.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            ensID.setText("");
+            idNomEnseignant.setText("");
+            DateNaissance.setValue(null);
+            status.setText("");
+
+        });
 
         ///RECUPERATION DES INFOMATION DE L'UTILISATEUR//////////
         if (LoginController.isUserExist.get().getId() != 0) {
@@ -224,6 +264,7 @@ public class EnseignantController implements Initializable {
 
         });
         fetchEnseignant();
+
     }
 
     private GluonObservableObject<Enseignant> getAllEnseignantbyID(String idEnseignant) {
@@ -248,6 +289,7 @@ public class EnseignantController implements Initializable {
     private void getComboEnseignant() {
         GluonObservableList<Enseignant> enseignants = getAllEnseignant();
         enseignants.setOnSucceeded(a -> {
+            comboEns.getItems().clear();
             comboEns.getItems().addAll(enseignants);
             comboEns.getSelectionModel().selectLast();
 
@@ -262,6 +304,7 @@ public class EnseignantController implements Initializable {
     private void getComboMatiere() {
         GluonObservableList<Matiere> matieres = getAllMatiere();
         matieres.setOnSucceeded(a -> {
+            comboMat.getItems().clear();
             comboMat.getItems().addAll(matieres);
             comboMat.getSelectionModel().selectLast();
         });
