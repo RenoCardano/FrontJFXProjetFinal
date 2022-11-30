@@ -102,7 +102,7 @@ public class EtablissementController implements Initializable {
 
         //REINITIALISATION DES CHAMPS
         idButtonResetEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            idNomEtablissement.setText("");
+            idIDEtablissement.setText("");
             idNomEtablissement.setText("");
             idAdresseEtablissement.setText("");
             idTypeEtablissement.setText("");
