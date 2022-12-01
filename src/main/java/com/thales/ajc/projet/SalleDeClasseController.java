@@ -198,7 +198,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableObject<Matiere> getMatiereById(TextField id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/matiere/" + id)
+                .host("http://localhost:8081/api/matiere/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Matiere.class));
@@ -207,7 +207,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableObject createSalleDeClasse(SalleDeClasse salleDeClasse) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8080/api/salleclasse/")
+                .host("http://localhost:8081/api/salleclasse/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(salleDeClasse))
@@ -220,7 +220,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<SalleDeClasse> getAllSalleDeClasse() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/salleclasse")
+                .host("http://localhost:8081/api/salleclasse")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(SalleDeClasse.class));
@@ -229,7 +229,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<Matiere> getAllMatiere() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/matiere")
+                .host("http://localhost:8081/api/matiere")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(Matiere.class));
