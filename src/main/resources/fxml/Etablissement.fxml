@@ -59,7 +59,7 @@
    <right>
       <VBox prefHeight="586.0" prefWidth="166.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idButtonEtablissement" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

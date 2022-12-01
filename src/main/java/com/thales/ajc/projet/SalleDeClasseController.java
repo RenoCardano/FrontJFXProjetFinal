@@ -5,14 +5,9 @@ import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
-import com.thales.ajc.projet.modele.Etablissement;
-import com.thales.ajc.projet.modele.Matiere;
-import com.thales.ajc.projet.modele.SalleDeClasse;
-import javafx.collections.FXCollections;
+import com.thales.ajc.projet.modele.*;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -35,11 +30,7 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private Button idBoutonClasse;
     @FXML
-    private Button idButtonUtlisateur;
-    @FXML
-    private Button idBoutonProfesseur;
-    @FXML
-    private Button idBoutonUtilisateur;
+    private Button idBoutonUtlisateur;
     @FXML
     private Button idBoutonJour;
     @FXML
@@ -64,6 +55,8 @@ public class SalleDeClasseController implements Initializable {
     private TableView listeSalleMatieres;
     @FXML
     private TableColumn idColumnNomSalleMatiere;
+    @FXML
+    private TableColumn idColumnIdMatiere;
     @FXML
     private TextField idRechercheSalle;
     @FXML
@@ -110,7 +103,7 @@ public class SalleDeClasseController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idButtonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        idBoutonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Utilisateur");
             } catch (IOException ex) {
@@ -139,89 +132,18 @@ public class SalleDeClasseController implements Initializable {
             idMatiereExcluesSalle.setText("");
         });
 
-        //ComboBox d'établissement :
-        ObservableList<String> dataCombo = FXCollections.observableArrayList("Etablissement 1","Etablissement 2");
-        idComboEtablissement.getItems().addAll(dataCombo);
-        idComboEtablissement.getSelectionModel().selectFirst();
 
         //Recupération des données dans la bdd
         GluonObservableList<SalleDeClasse> salle = getAllSalleDeClasse();
 
-        //ON CREE UNE LISTE FILTRER
-        /*FilteredList<SalleDeClasse> filteredData = new FilteredList<>(salle, b -> true);
-
-        idRechercheSalle.textProperty().addListener((observalble, oldText, newText) -> {
-
-            filteredData.setPredicate(e -> {
-                //comparer le nom et le type du tableau avec l'input de recherche
-                String lowerCaseFilter = newText.toLowerCase();
-                //recherche par Nom de la salle de classe ou etablissement
-                String fullName = ((e.getNom()+e.getEtablissement()).toLowerCase());
-                if(fullName.contains(lowerCaseFilter)){
-                    return true;
-                }
-                return false;
-            });
-            //je sors la liste filtrée dans une sorted list
-            SortedList<SalleDeClasse> sortedData = new SortedList<>(filteredData);
-
-            //Bind the sorted list comparator to the table view
-            sortedData.comparatorProperty().bind(listeSalleMatieres.comparatorProperty());
-
-            //Add the refreshed sorted data to the table
-            listeSalleMatieres.setItems(sortedData);
-        });
-
-        idButtonValiderSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            SalleDeClasse salleDeClasses = new SalleDeClasse();
-
-            salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
-            salleDeClasses.setNom(idNomSalle.getText());
-            salleDeClasses.setCapacite(idCapaciteSalle.getText());
-            salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
-            salleDeClasses.setEtablissement((Etablissement) idComboEtablissement.getSelectionModel().getSelectedItem());
-
-
-            if (idIDSalle.getText() != "") {
-                salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
-                System.out.println(salleDeClasses.getIdSalleClasse());
-            }
-            //CETTE FCT UPDATE SI DEJA CREEE
-            GluonObservableObject<SalleDeClasse> salleDeClasseCreated = createSalleDeClasse(salleDeClasses);
-
-            salleDeClasseCreated.setOnSucceeded(a -> {
-                fetchStatus.setText("Enregistrement effectué");
-                fetchStatus.setTextFill(Color.GREEN);
-            });
-            salleDeClasseCreated.setOnFailed(a -> {
-                fetchStatus.setText("Erreur pendant l'enregistrement effectué");
-                fetchStatus.setTextFill(Color.RED);
-            });*/
-
-            /*
-                Mets a jours la liste après une insertion
-             */
-            /*listeSalleMatieres.setItems(null);
-            GluonObservableList<SalleDeClasse> refresh = null;
-            refresh = getAllSalleDeClasse();
-            GluonObservableList<SalleDeClasse> finalRefresh = refresh;
-            refresh.setOnSucceeded(connectStateEvent -> {
-                listeSalleMatieres.setItems(finalRefresh);
-            });
-
-        });
-        fetchSalleDeClasse();*/
-
         //Creation d'une salle de classe
         idButtonValiderSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            SalleDeClasse salleDeClasses = new SalleDeClasse();
+                    SalleDeClasse salleDeClasses = new SalleDeClasse();
 
-            salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
-            salleDeClasses.setNom(idNomSalle.getText());
-            salleDeClasses.setCapacite(idCapaciteSalle.getText());
-            salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
-            salleDeClasses.setEtablissement((Etablissement) idComboEtablissement.getSelectionModel().getSelectedItem());
-
+                    salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
+                    salleDeClasses.setNom(idNomSalle.getText());
+                    salleDeClasses.setCapacite(idCapaciteSalle.getText());
+                    salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
 
             GluonObservableObject salleDeClasseCreated = createSalleDeClasse(salleDeClasses);
 
@@ -236,13 +158,15 @@ public class SalleDeClasseController implements Initializable {
             });
         });
         fetchSalleDeClasse();
+        fetchMatieres();
 
     }
 
-    private void fetchSalleDeClasse() {
+    private void fetchMatieres() {
         GluonObservableList<Matiere> matiereExclus = getAllMatiere();
 
         idColumnNomSalleMatiere.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        idColumnIdMatiere.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         matiereExclus.setOnSucceeded( e -> {
             listeSalleMatieres.setItems(matiereExclus);
@@ -253,10 +177,37 @@ public class SalleDeClasseController implements Initializable {
         });
     }
 
+    private void fetchSalleDeClasse() {
+        GluonObservableList<SalleDeClasse> salleDeClasse = getAllSalleDeClasse();
+
+        idColumnNomSalle.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        idColumnCapaciteSalle.setCellValueFactory(new PropertyValueFactory<>("capacite"));
+        idColumnMatiereExclus.setCellValueFactory(new PropertyValueFactory<>("matiereExcluClasse"));
+
+        salleDeClasse.setOnSucceeded( e -> {
+            listeSalleMatieres.setItems(salleDeClasse);
+        });
+        salleDeClasse.setOnFailed( e -> {
+            fetchStatus.setText("Erreur de chargement ");
+            listeSalleMatieres.setItems(salleDeClasse);
+        });
+    }
+
+
+
+    private GluonObservableObject<Matiere> getMatiereById(TextField id) {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/api/matiere/" + id)
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveObject(client.createObjectDataReader(Matiere.class));
+    }
+
     private GluonObservableObject createSalleDeClasse(SalleDeClasse salleDeClasse) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/salleclasse/")
+                .host("http://localhost:8080/api/salleclasse/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(salleDeClasse))
@@ -269,7 +220,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<SalleDeClasse> getAllSalleDeClasse() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/salleclasse")
+                .host("http://localhost:8080/api/salleclasse")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(SalleDeClasse.class));
@@ -278,7 +229,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<Matiere> getAllMatiere() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/matiere")
+                .host("http://localhost:8080/api/matiere")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(Matiere.class));
@@ -302,7 +253,7 @@ public class SalleDeClasseController implements Initializable {
                             Change<? extends Matiere> change) {
                         ObservableList<? extends Matiere> SelectedMatiereExclus = change.getList();
                         //ATTRIBUTION DES VALEURS DANS LES CHAMPS CORRESPONDANT
-                        idMatiereExcluesSalle.setText(SelectedMatiereExclus.get(0).getNom());
+                        idMatiereExcluesSalle.setText(String.valueOf(SelectedMatiereExclus.get(0).getId()));
 
                     }
                 });

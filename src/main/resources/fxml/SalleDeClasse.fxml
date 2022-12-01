@@ -34,7 +34,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -94,7 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtlisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" text="Utilisateur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -146,7 +145,7 @@
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <GridPane prefHeight="334.0" prefWidth="274.0">
+                                          <GridPane prefHeight="349.0" prefWidth="271.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="109.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="165.0" />
@@ -157,8 +156,8 @@
                                                 <RowConstraints maxHeight="42.19998779296875" minHeight="10.0" prefHeight="21.600012207031256" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="42.19999389648437" minHeight="10.0" prefHeight="32.60001220703125" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="43.79999084472655" minHeight="10.0" prefHeight="30.400006103515636" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="46.80000610351563" minHeight="10.0" prefHeight="34.40000610351562" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="51.79998168945312" minHeight="10.0" prefHeight="28.79999389648438" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="46.80000610351563" minHeight="0.7999908447265796" prefHeight="0.7999908447265796" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="89.20000915527345" minHeight="10.0" prefHeight="89.20000915527345" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
                                                 <Label prefHeight="17.0" prefWidth="103.0" text="Nom " GridPane.rowIndex="2" />
@@ -186,11 +185,10 @@
                                                       <Button fx:id="idButtonValiderSalle" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="V" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="10.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </GridPane>
-                                                <Label text="Etablissement" GridPane.rowIndex="5" />
-                                                <ComboBox fx:id="idComboEtablissement" prefHeight="26.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                                 <Label prefHeight="17.0" prefWidth="103.0" text="ID Salle de classe" GridPane.rowIndex="1" />
                                                 <TextField fx:id="idIDSalle" disable="true" editable="false" prefHeight="19.0" prefWidth="166.0" promptText="ID Salle de classe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
@@ -218,7 +216,7 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="406.0" prefWidth="190.0">
+                                    <VBox prefHeight="406.0" prefWidth="218.0">
                                        <children>
                                           <GridPane prefHeight="62.0" prefWidth="182.0">
                                             <columnConstraints>
@@ -240,10 +238,10 @@
                                                 </Label>
                                              </children>
                                           </GridPane>
-                                          <TableView fx:id="listeSalleMatieres" prefHeight="246.0" prefWidth="146.0">
+                                          <TableView fx:id="listeSalleMatieres" prefHeight="246.0" prefWidth="174.0">
                                              <columns>
-                                                <TableColumn fx:id="idColumnIdMatiere" prefWidth="68.79998970031738" text="Id matière" />
-                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="80.8000717163086" text="Matière" />
+                                                <TableColumn fx:id="idColumnIdMatiere" prefWidth="76.79998970031738" text="Id matière" />
+                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="100.0000228881836" text="Matière" />
                                              </columns></TableView>
                                        </children>
                                        <padding>
@@ -297,7 +295,7 @@
                                             <columns>
                                               <TableColumn fx:id="idColumnNomSalle" prefWidth="158.39998817443848" text="Nom" />
                                               <TableColumn fx:id="idColumnCapaciteSalle" prefWidth="110.4000244140625" text="Capacité" />
-                                                <TableColumn fx:id="idColumnMatiereExclus" prefWidth="153.5999755859375" text="Matières exclus" />
+                                                <TableColumn fx:id="idColumnMatiereExclus" prefWidth="188.79998779296875" text="Matières exclus" />
                                             </columns>
                                              <VBox.margin>
                                                 <Insets top="15.0" />

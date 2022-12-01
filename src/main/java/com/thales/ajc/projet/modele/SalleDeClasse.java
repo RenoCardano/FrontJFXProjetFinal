@@ -4,17 +4,16 @@ public class SalleDeClasse {
     private String nom;
     private String capacite;
     private String matiereExcluClasse;
-    private String etablissement;
+
     private int idSalleClasse;
 
     public SalleDeClasse(){
 
     }
-    public SalleDeClasse(String nom, String capacite, String matiereExcluClasse, Etablissement etablissement, int idSalleClasse) {
+    public SalleDeClasse(String nom, String capacite, String matiereExcluClasse, int idSalleClasse) {
         this.nom = nom;
         this.capacite = capacite;
         this.matiereExcluClasse = matiereExcluClasse;
-        this.etablissement = String.valueOf(etablissement);
         this.idSalleClasse = idSalleClasse;
     }
 
@@ -42,14 +41,6 @@ public class SalleDeClasse {
         this.matiereExcluClasse = matiereExcluClasse;
     }
 
-    public String getEtablissement() {
-        return etablissement;
-    }
-
-    public void setEtablissement(Etablissement etablissement) {
-        this.etablissement = String.valueOf(etablissement);
-    }
-
     public int getIdSalleClasse() {
         return idSalleClasse;
     }
@@ -64,7 +55,6 @@ public class SalleDeClasse {
                 "nom='" + nom + '\'' +
                 ", capacite='" + capacite + '\'' +
                 ", matiereExcluClasse='" + matiereExcluClasse + '\'' +
-                ", etablissement=" + etablissement +
                 ", idSalleClasse=" + idSalleClasse +
                 '}';
     }
