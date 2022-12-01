@@ -141,7 +141,14 @@ public class ClasseController implements Initializable {
 
         idButtonValider.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             if (nomClasse.getText() != "") {
-                Classe newClasse = new Classe(nomClasse.getText());
+                Classe newClasse = new Classe();
+                String nom = nomClasse.getText();
+                newClasse.setNomClasse(nom);
+                if(idClasse.getText() != "") {
+                    int idC = Integer.parseInt(idClasse.getText());
+                    newClasse.setIdClasse(idC);
+                    idClasse.setText("");
+                }
                 GluonObservableObject<Classe> createNewClass = createClasse(newClasse);
                 createNewClass.setOnSucceeded(classe -> {
                     status.setText("La classe à bien été crée ");
@@ -151,6 +158,7 @@ public class ClasseController implements Initializable {
                     status.setText("Erreur pendant l'enregistrement dela classe");
                     status.setTextFill(Color.GREEN);
                 });
+                status.setText("");
             }
         });
 
@@ -164,8 +172,6 @@ public class ClasseController implements Initializable {
             idClasse.setText("");
             nomClasse.setText("");
         });
-
-
     }
 
     private void HandleSelectedTab() {
@@ -197,8 +203,8 @@ public class ClasseController implements Initializable {
     private void fetchClasse() {
         GluonObservableList<Classe> classes = getAllClasses();
 
-        classeId.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        classeNom.setCellValueFactory(new PropertyValueFactory<>("codeMat"));
+        classeId.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
+        classeNom.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
         classes.setOnSucceeded(e -> {
             tableClasse.setItems(classes);
         });

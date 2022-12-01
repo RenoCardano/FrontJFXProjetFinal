@@ -82,7 +82,6 @@ public class LoginController implements Initializable{
             nomEtablissement = etablissements.stream().map(c -> c.getIdEtablissement() + "- " + c.getNom()).toList();
             comboEta.getItems().addAll(nomEtablissement);
             comboEta.getSelectionModel().selectFirst(); */
-
     }
 
     private void checkCredential(String userLogin, String passWord, MouseEvent e) {

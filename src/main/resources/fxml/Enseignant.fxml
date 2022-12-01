@@ -202,7 +202,7 @@
                                                             <Font size="10.0" />
                                                          </font>
                                                       </Button>
-                                                      <Button fx:id="idButtonValiderEns" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="V" GridPane.rowIndex="1">
+                                                      <Button fx:id="idButtonValiderEns" mnemonicParsing="false" prefHeight="32.0" prefWidth="84.0" text="V" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="10.0" />
                                                          </font>
@@ -457,25 +457,16 @@
             </MenuBar>
             <ToolBar>
                <items>
-                  <Button mnemonicParsing="false" text="Tool1">
+                  <Button mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/play.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Tool1">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="undo" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/redo.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" text="Tool1">
+                  <Button fx:id="record" mnemonicParsing="false">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -484,18 +475,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" text="Tool1">
+                  <Button fx:id="idDeleteEtablissement" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="delete" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" text="Tool1">
+                  <Button mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="planning" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/about.png" />
                            </image>
