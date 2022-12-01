@@ -90,6 +90,13 @@ public class EnseignantController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "login");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         //REDIRECTION VERS Salle De Classe
         idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -172,12 +179,9 @@ public class EnseignantController implements Initializable {
                 loader.setVisible(true);
             });
 
-
             EnseignantCreated.setOnSucceeded(a -> {
-
                 status.setText("Enregistrement réussie ");
                 status.setTextFill(Color.GREEN);
-
                 listeEnseignant.setItems(null);
                 fetchEnseignant();
                 status.setText("");
@@ -287,7 +291,7 @@ public class EnseignantController implements Initializable {
         creationMat.getStyleClass().setAll("btn", "btn-info");
         idButtonValiderEns.getStyleClass().setAll("btn", "btn-info");
         idButtonResetEns.getStyleClass().setAll("btn", "btn-danger");
-
+        validerAssociation.getStyleClass().setAll("btn", "btn-info");
         //////////////////ClIQUER ET SELECTIONNER/////////////////////////////////
         ///SELECTION DES CHAMPS POUR UPDATE
         HandleSelectedTab();
@@ -303,7 +307,6 @@ public class EnseignantController implements Initializable {
             idNomEnseignant.setText("");
             DateNaissance.setValue(null);
             status.setText("");
-
         });
 
         ///////////////////////delete enseignant/////////////////
@@ -317,8 +320,6 @@ public class EnseignantController implements Initializable {
         });
 
         fetchMatiere();
-
-
 
         //create a teacher
         idButtonValiderEns.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -361,7 +362,7 @@ public class EnseignantController implements Initializable {
     private void fetchMatiere() {
 
         colMat.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
+        allMatiere.setItems(null);
         GluonObservableList<Matiere> allMAtTab = getAllMatiere();
         allMAtTab.setOnRunning(mat -> {
             loader2.setVisible(true);
@@ -369,7 +370,7 @@ public class EnseignantController implements Initializable {
 
         allMAtTab.setOnSucceeded(mat-> {
             loader2.setVisible(false);
-            allMatiere.setItems(null);
+
             allMatiere.setItems(allMAtTab);
         });
     }
@@ -424,7 +425,6 @@ public class EnseignantController implements Initializable {
             comboEns.getItems().removeAll();
             comboEns.getItems().addAll(enseignants);
             comboEns.getSelectionModel().selectLast();
-
         });
         enseignants.setOnFailed(a -> {
             statusMat.setText("Erreur pendant la recherche des enseignants ");
@@ -583,7 +583,8 @@ public class EnseignantController implements Initializable {
             loader2.setVisible(false);
             statusMat.setText("Enregistrement réussie de la matière ");
             statusMat.setTextFill(Color.GREEN);
-         //   fetchMatiere();
+            allMatiere.setItems(null);
+            fetchMatiere();
          //   getComboMatiere();
         });
         creationMatiere.setOnFailed(a -> {
