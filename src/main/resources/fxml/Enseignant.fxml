@@ -62,58 +62,58 @@
 
 <BorderPane prefHeight="567.0" prefWidth="1189.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EnseignantController">
    <right>
-      <VBox prefHeight="487.0" prefWidth="163.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="490.0" prefWidth="180.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="82.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="204.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="81.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="182.0" text=" Etablissement" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonMatiere" minHeight="82.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="204.0" text="Matière">
+            <Button fx:id="idBoutonMatiere" minHeight="81.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="192.0" text="            Matière">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/folder.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonSalle" minHeight="82.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="203.0" text="Salle de classe">
+            <Button fx:id="idBoutonSalle" minHeight="81.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="182.0" text=" Salle de classe">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/school-house.png" />
+                        <Image url="@../icons/salleDeClasse.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonClasse" minHeight="82.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" minHeight="81.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="183.0" text="             Classe" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/classroom.png" />
+                        <Image url="@../icons/classe.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" minHeight="82.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="179.0" text="       Utilisateur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/teacher.png" />
+                        <Image url="@../icons/Utilisateurs.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" maxHeight="150.0" maxWidth="200.0" minHeight="77.0" minWidth="200.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="200.0" text="Déconnexion" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" maxHeight="150.0" maxWidth="200.0" minHeight="81.0" minWidth="200.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="Déconnexion" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/param.png" />
+                        <Image url="@../icons/deco.jpg" />
                      </image>
                   </ImageView>
                </graphic>
@@ -133,7 +133,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="logo" fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="logo" fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
+               </image></ImageView>
             <Label fx:id="nomEta" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="129.0" text="Nom du Lycée" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />

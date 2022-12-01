@@ -61,62 +61,62 @@
    <right>
       <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="100.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="  Etablissement" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="100.0" text="Matière">
+            <Button fx:id="idBoutonMatiere" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="            Matière">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/param.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="100.0" text="Salle de classe">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="100.0" text="Classe" textAlignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/folder.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Professeur" textAlignment="CENTER">
+               </graphic></Button>
+            <Button fx:id="idBoutonSalle" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="  Salle de classe">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/png-clipart-child-cartoon-children-photography-hand-thumbnail.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="              Classe">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/salleDeClasse.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="        Professeur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/teacher.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtilisateur" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="        Utilisateur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/Utilisateurs.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonJour" minHeight="60.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="170.0" text="                 Jour" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Jour.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -125,7 +125,7 @@
       </VBox>
    </right>
    <bottom>
-      <AnchorPane prefHeight="12.0" prefWidth="786.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="8.0" prefWidth="1046.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
