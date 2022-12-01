@@ -56,63 +56,63 @@
 
 <BorderPane prefHeight="613.0" prefWidth="1227.0" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.SalleDeClasseController">
    <right>
-      <VBox prefHeight="557.0" prefWidth="143.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="567.0" prefWidth="179.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="81.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="170.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/home.png" />
+                        <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonMatiere" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="165.0" text="Matière">
+            <Button fx:id="idBoutonMatiere" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="              Matière">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/folder.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonSalle" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="163.0" text="Salle de classe">
+            <Button fx:id="idBoutonSalle" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="Salle de classe">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/school-house.png" />
+                        <Image url="@../icons/salleDeClasse.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonClasse" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="164.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="             Classe" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/classroom.png" />
+                        <Image url="@../icons/png-clipart-child-cartoon-children-photography-hand-thumbnail.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="163.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="        Utilisateur" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/teacher.png" />
+                        <Image url="@../icons/Utilisateurs.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="                 Jour" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/param.png" />
+                        <Image url="@../icons/Jour.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonDeconnexion" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Déconnexion">
+            <Button fx:id="idBoutonDeconnexion" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" text="Déconnexion">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -139,7 +139,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="logo" fitHeight="106.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="logo" fitHeight="106.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/schoolClipArtPNGPicBackground.png" />
+               </image></ImageView>
             <Label fx:id="nomEta" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="129.0" text="Nom du Lycée" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
