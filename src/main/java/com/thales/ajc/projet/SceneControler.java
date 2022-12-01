@@ -26,4 +26,8 @@ public class SceneControler {
         stage.setScene(scene);
         stage.show();
     }
+
+
+
+
 }
