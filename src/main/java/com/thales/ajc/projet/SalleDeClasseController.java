@@ -6,12 +6,14 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -44,9 +46,9 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private ComboBox idComboEtablissement;
     @FXML
-    private Button idButtonResetSalle;
+    private Button undo;
     @FXML
-    private Button idButtonValiderSalle;
+    private Button idButtonValiderSalle, idButtonSuppSalle;
     @FXML
     private Label fetchStatus;
     @FXML
@@ -58,16 +60,22 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private TableColumn idColumnIdMatiere;
     @FXML
+    private
+    TableColumn<SalleDeClasse, String> idColumnNomSalle = new TableColumn<SalleDeClasse, String>("Nom");
+    @FXML
+    private
+    TableColumn<SalleDeClasse, String> idColumnCapaciteSalle = new TableColumn<SalleDeClasse, String>("Capacité");
+    @FXML
+    private
+    TableColumn<SalleDeClasse, String> idColumnMatiereExclus = new TableColumn<SalleDeClasse, String>("Matière exclues");
+
+    @FXML
     private TextField idRechercheSalle;
     @FXML
     private TableView listSalleClasse;
-    @FXML
-    private TableColumn idColumnNomSalle;
-    @FXML
-    private TableColumn idColumnCapaciteSalle;
-    @FXML
-    private TableColumn idColumnMatiereExclus;
 
+    @FXML
+    private ImageView loader;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -118,49 +126,94 @@ public class SalleDeClasseController implements Initializable {
             }
         });
 
-        idButtonValiderSalle.getStyleClass().setAll("btn", "btn-primary");
-        idButtonResetSalle.getStyleClass().setAll("btn", "btn-warning");
+        idButtonValiderSalle.getStyleClass().setAll("btn", "btn-info");
+        idButtonSuppSalle.getStyleClass().setAll("btn", "btn-warning");
 
         ///SELECTION DES CHAMPS POUR UPDATE
         HandleSelectedTab();
 
         //REINITIALISATION DES CHAMPS
-        idButtonResetSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        undo.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             idIDSalle.setText("");
             idNomSalle.setText("");
             idCapaciteSalle.setText("");
             idMatiereExcluesSalle.setText("");
         });
 
-
-        //Recupération des données dans la bdd
-        GluonObservableList<SalleDeClasse> salle = getAllSalleDeClasse();
-
         //Creation d'une salle de classe
         idButtonValiderSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                    SalleDeClasse salleDeClasses = new SalleDeClasse();
 
+            if (idNomSalle.getText() != "") {
+
+                SalleDeClasse salleDeClasses = new SalleDeClasse();
+                salleDeClasses.setNom(idNomSalle.getText());
+                salleDeClasses.setCapacite(idCapaciteSalle.getText());
+
+                if (idIDSalle.getText() != "") {
                     salleDeClasses.setIdSalleClasse(Integer.parseInt(idIDSalle.getText()));
-                    salleDeClasses.setNom(idNomSalle.getText());
-                    salleDeClasses.setCapacite(idCapaciteSalle.getText());
-                    salleDeClasses.setMatiereExcluClasse(idMatiereExcluesSalle.getText());
+                }
+                if (idMatiereExcluesSalle.getText() != "") {
+                    GluonObservableObject<Matiere> selectedMatiere = getMatiereById(Integer.parseInt(idMatiereExcluesSalle.getText()));
 
-            GluonObservableObject salleDeClasseCreated = createSalleDeClasse(salleDeClasses);
+                    selectedMatiere.setOnRunning(change -> {
+                        loader.setVisible(true);
+                    });
+                    selectedMatiere.setOnSucceeded(change -> {
+                        loader.setVisible(false);
+                        salleDeClasses.setMatiereExcluClasse(selectedMatiere.get());
+                        GluonObservableObject<SalleDeClasse> newSalleClasse = createSalleDeClasse(salleDeClasses);
 
-            salleDeClasseCreated.setOnSucceeded( a -> {
-                fetchStatus.setText("Enregistrement réussie");
+                        newSalleClasse.setOnRunning(load -> {
+                            loader.setVisible(true);
+                        });
 
-                listeSalleMatieres.setItems(null);
-                fetchSalleDeClasse();
-            });
-            salleDeClasseCreated.setOnFailed( a -> {
-                fetchStatus.setText("Erreur pendant l'enregistrement");
-            });
+                        newSalleClasse.setOnSucceeded(load -> {
+                            loader.setVisible(false);
+                            fetchStatus.setText("La salle de classe a été créée");
+                            listSalleClasse.setItems(null);
+                            fetchSalleDeClasse();
+                        });
+                        newSalleClasse.setOnFailed(load -> {
+                            loader.setVisible(false);
+                            fetchStatus.setText("Problème pendannt la création de la salle de classe");
+                            // fetchSalleDeClasse();
+                        });
+
+                    });
+                    selectedMatiere.setOnFailed(change -> {
+                        loader.setVisible(false);
+                        fetchStatus.setText("Problème pendant la recherche de la matière ");
+                    });
+
+                } else {
+                    //SI CREATION SANS MATIERE A EXCLURE
+                    GluonObservableObject<SalleDeClasse> newSalleClasses = createSalleDeClasse(salleDeClasses);
+
+                    newSalleClasses.setOnRunning(load -> {
+                        loader.setVisible(true);
+                    });
+
+                    newSalleClasses.setOnSucceeded(load -> {
+                        loader.setVisible(false);
+                        fetchStatus.setText("La salle de classe a été créée");
+                        fetchStatus.setTextFill(Color.GREEN);
+                        listSalleClasse.setItems(null);
+                        fetchSalleDeClasse();
+                    });
+
+                    newSalleClasses.setOnFailed(load -> {
+                        loader.setVisible(false);
+                        fetchStatus.setText("Problème pendant la création de la salle de classe");
+
+
+                    });
+                }
+            }
         });
         fetchSalleDeClasse();
         fetchMatieres();
-
     }
+
 
     private void fetchMatieres() {
         GluonObservableList<Matiere> matiereExclus = getAllMatiere();
@@ -184,18 +237,26 @@ public class SalleDeClasseController implements Initializable {
         idColumnCapaciteSalle.setCellValueFactory(new PropertyValueFactory<>("capacite"));
         idColumnMatiereExclus.setCellValueFactory(new PropertyValueFactory<>("matiereExcluClasse"));
 
+        idColumnNomSalle.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String nomClasse = pieceStringCellDataFeatures.getValue().getNom();
+            return new SimpleStringProperty(nomClasse);
+        });
+        idColumnCapaciteSalle.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String cap = pieceStringCellDataFeatures.getValue().getCapacite();
+            return new SimpleStringProperty(cap);
+        });
+
         salleDeClasse.setOnSucceeded( e -> {
-            listeSalleMatieres.setItems(salleDeClasse);
+            listSalleClasse.setItems(salleDeClasse);
         });
         salleDeClasse.setOnFailed( e -> {
             fetchStatus.setText("Erreur de chargement ");
-            listeSalleMatieres.setItems(salleDeClasse);
+            listSalleClasse.setItems(salleDeClasse);
         });
     }
 
 
-
-    private GluonObservableObject<Matiere> getMatiereById(TextField id) {
+    private GluonObservableObject<Matiere> getMatiereById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
                 .host("http://localhost:8081/api/matiere/" + id)

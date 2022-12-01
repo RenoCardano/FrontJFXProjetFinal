@@ -3,14 +3,15 @@ package com.thales.ajc.projet.modele;
 public class SalleDeClasse {
     private String nom;
     private String capacite;
-    private String matiereExcluClasse;
+    private Matiere matiereExcluClasse;
 
     private int idSalleClasse;
 
     public SalleDeClasse(){
 
     }
-    public SalleDeClasse(String nom, String capacite, String matiereExcluClasse, int idSalleClasse) {
+
+    public SalleDeClasse(String nom, String capacite, Matiere matiereExcluClasse, int idSalleClasse) {
         this.nom = nom;
         this.capacite = capacite;
         this.matiereExcluClasse = matiereExcluClasse;
@@ -33,11 +34,11 @@ public class SalleDeClasse {
         this.capacite = capacite;
     }
 
-    public String getMatiereExcluClasse() {
+    public Matiere getMatiereExcluClasse() {
         return matiereExcluClasse;
     }
 
-    public void setMatiereExcluClasse(String matiereExcluClasse) {
+    public void setMatiereExcluClasse(Matiere matiereExcluClasse) {
         this.matiereExcluClasse = matiereExcluClasse;
     }
 
@@ -54,7 +55,7 @@ public class SalleDeClasse {
         return "SalleDeClasse{" +
                 "nom='" + nom + '\'' +
                 ", capacite='" + capacite + '\'' +
-                ", matiereExcluClasse='" + matiereExcluClasse + '\'' +
+                ", matiereExcluClasse=" + matiereExcluClasse +
                 ", idSalleClasse=" + idSalleClasse +
                 '}';
     }
