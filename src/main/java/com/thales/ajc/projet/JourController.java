@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.action.Action;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class JourController implements Initializable {
     @FXML
     private Button idBoutonProfesseur;
     @FXML
-    private Button idBoutonUtilisateur;
+    private Button idButtonUtlisateur;
     @FXML
     private Button idBoutonJour;
     @FXML
@@ -50,6 +51,51 @@ public class JourController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //REDIRECTION VERS Salle De Classe
+        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Etablissement");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Enseignant");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "SalleDeClasse");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonClasse.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Classe");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idButtonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Utilisateur");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         Action idButtonValiderJour = null;
         idButtonValiderJour.getStyleClass().setAll("btn", "btn-primary");

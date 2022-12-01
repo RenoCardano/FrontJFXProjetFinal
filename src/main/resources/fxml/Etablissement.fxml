@@ -57,9 +57,18 @@
 
 <BorderPane prefHeight="660.0" prefWidth="1200.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.EtablissementController">
    <right>
-      <VBox prefHeight="591.0" prefWidth="125.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="586.0" prefWidth="166.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="80.0" prefWidth="126.0" text="Matière">
+            <Button fx:id="idButtonEtablissement" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonMatiere" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Matière">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,7 +76,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="80.0" text="Salle de classe">
+            <Button fx:id="idBoutonSalle" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Salle de classe">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +84,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="126.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Classe" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -84,16 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonProfesseur" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="128.0" text="Professeur" textAlignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idButtonUtlisateur" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="132.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Utilisateur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -102,7 +102,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" minHeight="50.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="134.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Jour" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

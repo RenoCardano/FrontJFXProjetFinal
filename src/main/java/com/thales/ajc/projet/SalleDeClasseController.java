@@ -35,6 +35,8 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private Button idBoutonClasse;
     @FXML
+    private Button idButtonUtlisateur;
+    @FXML
     private Button idBoutonProfesseur;
     @FXML
     private Button idBoutonUtilisateur;
@@ -77,19 +79,47 @@ public class SalleDeClasseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //REDIRECTION VERS PROFFESSEUR
-        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+        //REDIRECTION VERS Salle De Classe
+        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Etablissement");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Enseignant");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
-        //REDIRECTION VERS Salle De Classe
-        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                SceneControler.switchScene(e, "Etablissement");
+                SceneControler.switchScene(e, "SalleDeClasse");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonClasse.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Classe");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idButtonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                SceneControler.switchScene(e, "Utilisateur");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Jour");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

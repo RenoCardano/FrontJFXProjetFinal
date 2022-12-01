@@ -57,11 +57,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="435.0" prefWidth="786.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.SalleDeClasseController">
+<BorderPane prefHeight="566.0" prefWidth="962.0" stylesheets="../Bootstrap/css/bootstrap3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.ajc.projet.SalleDeClasseController">
    <right>
-      <VBox prefHeight="351.0" prefWidth="230.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="490.0" prefWidth="168.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" mnemonicParsing="false" prefHeight="100.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" minHeight="81.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -69,7 +69,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonMatiere" mnemonicParsing="false" prefHeight="100.0" text="Matière">
+            <Button fx:id="idBoutonMatiere" minHeight="81.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="166.0" text="Matière">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -77,7 +77,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonSalle" mnemonicParsing="false" prefHeight="100.0" text="Salle de classe">
+            <Button fx:id="idBoutonSalle" minHeight="81.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="166.0" text="Salle de classe">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,7 +85,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" prefHeight="100.0" text="Classe" textAlignment="CENTER">
+            <Button fx:id="idBoutonClasse" layoutX="10.0" layoutY="48.0" minHeight="81.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="166.0" text="Classe" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -94,16 +94,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonProfesseur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Professeur" textAlignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="idBoutonUtilisateur" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Utilisateur" textAlignment="CENTER">
+            <Button fx:id="idBoutonUtilisateur" minHeight="81.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" text="Utilisateur" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -112,7 +103,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" mnemonicParsing="false" prefHeight="72.0" prefWidth="106.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="166.0" text="Jour" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -143,40 +134,41 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <HBox layoutX="2.0" prefHeight="277.0" prefWidth="629.0">
+                              <HBox layoutX="2.0" prefHeight="406.0" prefWidth="658.0">
                                  <children>
-                                    <VBox prefHeight="277.0" prefWidth="314.0">
+                                    <VBox prefHeight="348.0" prefWidth="311.0">
                                        <children>
                                           <Label text="Crée une salle de classe : ">
                                              <font>
-                                                <Font size="14.0" />
+                                                <Font name="System Bold Italic" size="14.0" />
                                              </font>
                                              <opaqueInsets>
                                                 <Insets bottom="15.0" left="15.0" top="20.0" />
                                              </opaqueInsets>
                                           </Label>
-                                          <GridPane prefHeight="342.0" prefWidth="274.0">
+                                          <GridPane prefHeight="334.0" prefWidth="274.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="109.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="165.0" />
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="42.19998779296875" minHeight="10.0" prefHeight="32.60001220703125" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="42.200018310546874" minHeight="10.0" prefHeight="27.19998779296875" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="42.19998779296875" minHeight="10.0" prefHeight="21.600012207031256" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="42.19999389648437" minHeight="10.0" prefHeight="32.60001220703125" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="43.79999084472655" minHeight="10.0" prefHeight="30.400006103515636" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="46.80000610351563" minHeight="10.0" prefHeight="34.40000610351562" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="51.79998168945312" minHeight="10.0" prefHeight="28.79999389648438" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " GridPane.rowIndex="1" />
-                                                <Label text="Capacité" GridPane.rowIndex="2" />
-                                                <Label text="Matières exclues" GridPane.rowIndex="3" />
-                                                <TextField fx:id="idNomSalle" prefHeight="19.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="idCapaciteSalle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="idMatiereExcluesSalle" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="Nom " GridPane.rowIndex="2" />
+                                                <Label text="Capacité" GridPane.rowIndex="3" />
+                                                <Label text="Matières exclues" GridPane.rowIndex="4" />
+                                                <TextField fx:id="idNomSalle" prefHeight="19.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="idCapaciteSalle" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="idMatiereExcluesSalle" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -197,10 +189,10 @@
                                                          </font></Button>
                                                    </children>
                                                 </GridPane>
-                                                <Label text="Etablissement" GridPane.rowIndex="4" />
-                                                <ComboBox fx:id="idComboEtablissement" prefHeight="26.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label prefHeight="17.0" prefWidth="103.0" text="ID Salle de classe" />
-                                                <TextField fx:id="idIDSalle" disable="true" editable="false" prefHeight="19.0" prefWidth="166.0" promptText="ID Salle de classe" GridPane.columnIndex="1" />
+                                                <Label text="Etablissement" GridPane.rowIndex="5" />
+                                                <ComboBox fx:id="idComboEtablissement" prefHeight="26.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label prefHeight="17.0" prefWidth="103.0" text="ID Salle de classe" GridPane.rowIndex="1" />
+                                                <TextField fx:id="idIDSalle" disable="true" editable="false" prefHeight="19.0" prefWidth="166.0" promptText="ID Salle de classe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane>
@@ -226,18 +218,19 @@
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox prefHeight="277.0" prefWidth="164.0">
+                                    <VBox prefHeight="406.0" prefWidth="190.0">
                                        <children>
-                                          <GridPane>
+                                          <GridPane prefHeight="62.0" prefWidth="182.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
                                                 <Label />
-                                                <Label prefHeight="20.0" prefWidth="125.0" text="Liste des matières :">
+                                                <Label prefHeight="20.0" prefWidth="233.0" text="Liste des matières :" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -247,9 +240,10 @@
                                                 </Label>
                                              </children>
                                           </GridPane>
-                                          <TableView fx:id="listeSalleMatieres" prefHeight="179.0" prefWidth="96.0">
+                                          <TableView fx:id="listeSalleMatieres" prefHeight="246.0" prefWidth="146.0">
                                              <columns>
-                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="107.0" text="Nom" />
+                                                <TableColumn fx:id="idColumnIdMatiere" prefWidth="68.79998970031738" text="Id matière" />
+                                                <TableColumn fx:id="idColumnNomSalleMatiere" prefWidth="80.8000717163086" text="Matière" />
                                              </columns></TableView>
                                        </children>
                                        <padding>
@@ -268,11 +262,11 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <HBox prefHeight="277.0" prefWidth="633.0">
+                              <HBox layoutX="2.0" prefHeight="402.0" prefWidth="660.0">
                                  <children>
                                     <VBox prefHeight="278.0" prefWidth="715.0">
                                        <children>
-                                          <GridPane>
+                                          <GridPane prefHeight="74.0" prefWidth="446.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="279.0" />
                                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="200.0" />
@@ -283,15 +277,15 @@
                                               <RowConstraints maxHeight="34.19998779296874" minHeight="10.0" prefHeight="34.19998779296874" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label text="Rechercher une salle :" GridPane.rowIndex="2">
+                                                <Label text="Rechercher :" GridPane.rowIndex="2">
                                                    <padding>
-                                                      <Insets left="140.0" />
+                                                      <Insets left="170.0" />
                                                    </padding>
                                                 </Label>
-                                                <TextField fx:id="idRechercherSalle" prefHeight="25.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label prefHeight="20.0" prefWidth="227.0" text="Liste des Salle de Classe  :">
+                                                <TextField fx:id="idRechercherSalle" prefHeight="26.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label prefHeight="20.0" prefWidth="227.0" text="Liste des Salles de Classe  :">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font name="System Bold Italic" size="14.0" />
                                                    </font>
                                                    <opaqueInsets>
                                                       <Insets bottom="15.0" left="15.0" top="20.0" />
@@ -301,10 +295,9 @@
                                           </GridPane>
                                           <TableView fx:id="listSalleClasse" prefHeight="200.0" prefWidth="200.0">
                                             <columns>
-                                              <TableColumn fx:id="idColumnNomSalle" prefWidth="83.0" text="Nom" />
-                                              <TableColumn fx:id="idColumnCapaciteSalle" prefWidth="111.0" text="Capacité" />
-                                                <TableColumn fx:id="idColumnMatiereExclus" prefWidth="119.0" text="Matières exclus" />
-                                                <TableColumn fx:id="idColumnEtablissement" prefWidth="107.0" text="Etablissement" />
+                                              <TableColumn fx:id="idColumnNomSalle" prefWidth="158.39998817443848" text="Nom" />
+                                              <TableColumn fx:id="idColumnCapaciteSalle" prefWidth="110.4000244140625" text="Capacité" />
+                                                <TableColumn fx:id="idColumnMatiereExclus" prefWidth="153.5999755859375" text="Matières exclus" />
                                             </columns>
                                              <VBox.margin>
                                                 <Insets top="15.0" />

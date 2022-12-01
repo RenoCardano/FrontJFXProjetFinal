@@ -74,23 +74,16 @@ public class EtablissementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //REDIRECTION VERS PROFFESSEUR
-        idBoutonProfesseur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        //REDIRECTION VERS Salle De Classe
+        idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                SceneControler.switchScene(e, "Enseignant");
+                SceneControler.switchScene(e, "Etablissement");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
-        //REDIRECTION VERS Salle De Classe
-        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            try {
-                SceneControler.switchScene(e, "SalleDeClasse");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        //REDIRECTION VERS PROFFESSEUR
         idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Enseignant");
