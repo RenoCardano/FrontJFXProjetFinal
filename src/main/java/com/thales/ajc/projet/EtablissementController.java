@@ -116,13 +116,6 @@ public class EtablissementController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
-            try {
-                SceneControler.switchScene(ejour, "Jour");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
         idBoutonDeconnexion.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
             try {
                 SceneControler.switchScene(ejour, "Login");

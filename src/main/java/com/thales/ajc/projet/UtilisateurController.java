@@ -114,13 +114,7 @@ public class UtilisateurController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            try {
-                SceneControler.switchScene(e, "Jour");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+
 
         ///RECUPERATION DES INFOMATION DE L'UTILISATEUR//////////
         if (LoginController.isUserExist.get().getId() != 0) {

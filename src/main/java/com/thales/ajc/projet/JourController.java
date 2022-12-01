@@ -89,13 +89,6 @@ public class JourController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
-            try {
-                SceneControler.switchScene(ejour, "Jour");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
 
         Action idButtonValiderJour = null;
         idButtonValiderJour.getStyleClass().setAll("btn", "btn-primary");

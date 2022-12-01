@@ -104,15 +104,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Jour" textAlignment="CENTER">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/param.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button fx:id="idBoutonDeconnexion" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Déconnexion">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

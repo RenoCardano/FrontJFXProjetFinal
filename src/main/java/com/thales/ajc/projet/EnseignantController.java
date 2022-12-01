@@ -127,13 +127,7 @@ public class EnseignantController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            try {
-                SceneControler.switchScene(e, "Jour");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+
 
       /*  idBoutonUtilisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
