@@ -79,7 +79,6 @@ public class EnseignantController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {

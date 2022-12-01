@@ -19,6 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -54,6 +56,9 @@ public class LoginController implements Initializable{
 
     @FXML
     private Button buttonCancel;
+    
+    @FXML
+    private ImageView loading;
 
     //reutiliser dans le menu pour l'affichage
     public static GluonObservableObject<User> isUserExist;
@@ -68,8 +73,6 @@ public class LoginController implements Initializable{
             String UserLogin = "Renaud"; //fieldUser.getText();
             String PassWord = "France";
             passwordField.getText();
-            System.out.println(UserLogin);
-            System.out.println(PassWord);
             checkCredential(UserLogin, PassWord, e);
         });
 
@@ -86,6 +89,10 @@ public class LoginController implements Initializable{
 
     private void checkCredential(String userLogin, String passWord, MouseEvent e) {
         isUserExist = getDataByNamePassWord(userLogin,passWord);
+
+        isUserExist.setOnRunning(chargement -> {
+            loading.setVisible(true);
+        });
 
         isUserExist.setOnSucceeded( a-> {
             try {
