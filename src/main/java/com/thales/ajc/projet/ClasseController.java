@@ -48,7 +48,9 @@ public class ClasseController implements Initializable {
             idBoutonClasse,
             idBoutonMatiere,
             idBoutonSalle,
-            idBoutonEtablissement;;
+            idBoutonDeconnexion,
+            idBoutonEtablissement,
+            exit;
 
     @FXML
     private Label status, nomEta, NomEns;
@@ -65,6 +67,9 @@ public class ClasseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        exit.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            System.exit(0);
+        });
 
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -108,6 +113,13 @@ public class ClasseController implements Initializable {
         idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonDeconnexion.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Login");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -217,7 +229,7 @@ public class ClasseController implements Initializable {
     private GluonObservableObject<User> getUserById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/users/" + id)
+                .host("http://localhost:8080/api/users/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
@@ -226,7 +238,7 @@ public class ClasseController implements Initializable {
     private GluonObservableList<Classe> getAllClasses() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/classe")
+                .host("http://localhost:8080/api/classe")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(Classe.class));
@@ -237,7 +249,7 @@ public class ClasseController implements Initializable {
 
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/classe/")
+                .host("http://localhost:8080/api/classe/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(classe))

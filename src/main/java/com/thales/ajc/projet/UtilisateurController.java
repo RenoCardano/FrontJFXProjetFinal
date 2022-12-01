@@ -43,10 +43,11 @@ public class UtilisateurController implements Initializable {
     @FXML
     private Button idButtonValider, idButtonReset, idBoutonJour,
             idBoutonUtilisateur,
+            idBoutonDeconnexion,
             idBoutonClasse,
             idBoutonMatiere,
             idBoutonSalle,
-            idBoutonEtablissement, undo, save, quit, record, idDeleteEtablissement, planning;
+            idBoutonEtablissement,exit, undo, save, quit, record, idDeleteEtablissement, planning;
 
     @FXML
     private Label status, nomEta, NomEns;
@@ -264,7 +265,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableObject<Boolean> deleteByID(int id) {
         RestClient client = RestClient.create()
                 .method("DELETE")
-                .host("http://localhost:8081/api/users/delete/" + id)
+                .host("http://localhost:8080/api/users/delete/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Boolean.class));
@@ -274,7 +275,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableObject<User> createUtilisateur(User utilisateur) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/users/")
+                .host("http://localhost:8080/api/users/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(utilisateur))
@@ -286,7 +287,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableObject<Etablissement> getAllEtablissementByID(String idEtablissement) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/etablissement/" + idEtablissement)
+                .host("http://localhost:8080/api/etablissement/" + idEtablissement)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Etablissement.class));
@@ -309,7 +310,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableList<Etablissement> getAllEtablissement() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/etablissement")
+                .host("http://localhost:8080/api/etablissement")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(Etablissement.class));
@@ -380,7 +381,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableList<User> getUsers() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/users/")
+                .host("http://localhost:8080/api/users/")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(User.class));
@@ -389,7 +390,7 @@ public class UtilisateurController implements Initializable {
     private GluonObservableObject<User> getUserById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/users/" + id)
+                .host("http://localhost:8080/api/users/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));

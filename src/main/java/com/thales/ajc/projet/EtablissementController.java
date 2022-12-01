@@ -8,6 +8,7 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.Etablissement;
+import com.thales.ajc.projet.modele.User;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -34,7 +35,7 @@ public class EtablissementController implements Initializable {
     @FXML
     private Button idBoutonSalle;
     @FXML
-    private Button idBoutonClasse;
+    private Button idBoutonClasse, idBoutonDeconnexion;
 
     @FXML
     private Button idBoutonJour;
@@ -49,7 +50,7 @@ public class EtablissementController implements Initializable {
     @FXML
     private TextField idLogoEtablissement;
     @FXML
-    private Button idButtonResetEtablissement;
+    private Button reset, exit;
     @FXML
     private Button idButtonValiderEtablissement;
     @FXML
@@ -63,7 +64,7 @@ public class EtablissementController implements Initializable {
     @FXML
     private TableColumn idColumnTelEtablissement;
     @FXML
-    private Label fetchStatus;
+    private Label fetchStatus, NomEns, nomEta, status;
     @FXML
     private TextField idRechercheEtablissement;
     @FXML
@@ -73,6 +74,9 @@ public class EtablissementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        exit.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            System.exit(0);
+        });
 
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -119,16 +123,40 @@ public class EtablissementController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+        idBoutonDeconnexion.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Login");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        ///RECUPERATION DES INFOMATION DE L'UTILISATEUR//////////
+        if (LoginController.isUserExist.get().getId() != 0) {
+            GluonObservableObject<User> userInfo = getUserById(1);
+            userInfo.setOnSucceeded(a -> {
+                NomEns.setText(userInfo.get().getLogin());
+                Etablissement nomEtablissement;
+                nomEtablissement = userInfo.get().getEtablissement();
+                nomEta.setText(nomEtablissement.getNom());
+                //logo.setImage(new Image("../resources/icons/about.png"));
+            });
+
+            userInfo.setOnFailed(a -> {
+                status.setText("Erreur pendant le chargement des données");
+                status.setTextFill(Color.RED);
+            });
+        }
 
         idButtonValiderEtablissement.getStyleClass().setAll("btn", "btn-primary");
-        idButtonResetEtablissement.getStyleClass().setAll("btn", "btn-warning");
+        idDeleteEtablissement.getStyleClass().setAll("btn", "btn-danger");
 
 
         ///SELECTION DES CHAMPS POUR UPDATE
         HandleSelectedTab();
 
         //REINITIALISATION DES CHAMPS
-        idButtonResetEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        reset.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             idIDEtablissement.setText("");
             idNomEtablissement.setText("");
             idAdresseEtablissement.setText("");
@@ -219,7 +247,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableObject<Boolean> deleteEtablissement(String id) {
         RestClient client = RestClient.create()
                 .method("DELETE")
-                .host("http://localhost:8081/api/etablissement/delete/"+ id)
+                .host("http://localhost:8080/api/etablissement/delete/"+ id)
                 .connectTimeout(20000)
                 .readTimeout(20000);
 
@@ -246,7 +274,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableObject createEtablissement(Etablissement etablissement) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/etablissement/")
+                .host("http://localhost:8080/api/etablissement/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(etablissement))
@@ -259,10 +287,18 @@ public class EtablissementController implements Initializable {
     private GluonObservableList<Etablissement> getAllEtablissement() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/etablissement")
+                .host("http://localhost:8080/api/etablissement")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(Etablissement.class));
+    }
+    private GluonObservableObject<User> getUserById(int id) {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/api/users/" + id)
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
     }
     private void HandleSelectedTab() {
         //selection dans un tableau

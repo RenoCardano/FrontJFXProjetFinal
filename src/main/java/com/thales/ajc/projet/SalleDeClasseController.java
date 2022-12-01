@@ -32,7 +32,9 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private Button idBoutonClasse;
     @FXML
-    private Button idBoutonUtlisateur;
+    private Button idBoutonDeconnexion;
+    @FXML
+    private Button idBoutonUtilisateur;
     @FXML
     private Button idBoutonJour;
     @FXML
@@ -46,7 +48,7 @@ public class SalleDeClasseController implements Initializable {
     @FXML
     private ComboBox idComboEtablissement;
     @FXML
-    private Button undo;
+    private Button reset, exit;
     @FXML
     private Button idButtonValiderSalle, idButtonSuppSalle;
     @FXML
@@ -79,7 +81,9 @@ public class SalleDeClasseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        exit.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            System.exit(0);
+        });
 
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -90,16 +94,17 @@ public class SalleDeClasseController implements Initializable {
             }
         });
 
-        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        //REDIRECTION VERS Salle De Classe
+        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                SceneControler.switchScene(e, "Enseignant");
+                SceneControler.switchScene(e, "SalleDeClasse");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        idBoutonMatiere.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                SceneControler.switchScene(e, "SalleDeClasse");
+                SceneControler.switchScene(e, "Enseignant");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -111,16 +116,24 @@ public class SalleDeClasseController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonUtlisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+        idBoutonUtilisateur.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Utilisateur");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+        idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                SceneControler.switchScene(ejour, "Jour");
+                SceneControler.switchScene(e, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonDeconnexion.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Login");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -133,7 +146,7 @@ public class SalleDeClasseController implements Initializable {
         HandleSelectedTab();
 
         //REINITIALISATION DES CHAMPS
-        undo.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        reset.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             idIDSalle.setText("");
             idNomSalle.setText("");
             idCapaciteSalle.setText("");
@@ -259,7 +272,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableObject<Matiere> getMatiereById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/matiere/" + id)
+                .host("http://localhost:8080/api/matiere/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Matiere.class));
@@ -268,7 +281,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableObject createSalleDeClasse(SalleDeClasse salleDeClasse) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8081/api/salleclasse/")
+                .host("http://localhost:8080/api/salleclasse/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(salleDeClasse))
@@ -281,7 +294,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<SalleDeClasse> getAllSalleDeClasse() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/salleclasse")
+                .host("http://localhost:8080/api/salleclasse")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(SalleDeClasse.class));
@@ -290,7 +303,7 @@ public class SalleDeClasseController implements Initializable {
     private GluonObservableList<Matiere> getAllMatiere() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8081/api/matiere")
+                .host("http://localhost:8080/api/matiere")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(Matiere.class));

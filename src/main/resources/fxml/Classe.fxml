@@ -104,11 +104,20 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="164.0" text="Jour" textAlignment="CENTER">
+            <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Jour" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/param.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="idBoutonDeconnexion" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Déconnexion">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/deco.jpg" />
                      </image>
                   </ImageView>
                </graphic>
@@ -120,9 +129,12 @@
       <AnchorPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="571.0" prefWidth="52.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="136.0" text="Bienvenue " textAlignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="136.0" text="Bienvenue " textAlignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
             <Label fx:id="NomEns" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="155.0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -131,7 +143,7 @@
             <ImageView fx:id="logo" fitHeight="106.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="nomEta" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="129.0" text="Nom du Lycée" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
          </children>
@@ -143,11 +155,11 @@
             <Pane prefHeight="488.0" prefWidth="687.0" />
             <HBox layoutX="3.0" layoutY="3.0" prefHeight="473.0" prefWidth="900.0">
                <children>
-                  <VBox prefHeight="277.0" prefWidth="314.0">
+                  <VBox prefHeight="474.0" prefWidth="382.0">
                      <children>
                         <Label prefHeight="20.0" prefWidth="157.0" text="Créé une classe: ">
                            <font>
-                              <Font name="System Bold Italic" size="14.0" />
+                              <Font name="System Bold Italic" size="18.0" />
                            </font>
                            <opaqueInsets>
                               <Insets bottom="15.0" left="15.0" top="20.0" />
@@ -158,8 +170,8 @@
                         </Label>
                         <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="164.0" prefWidth="260.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="109.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="165.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="97.60000762939453" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="177.59999237060546" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints />
@@ -186,12 +198,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button fx:id="idButtonReset" mnemonicParsing="false" prefHeight="32.0" prefWidth="93.0" text="X" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Button fx:id="idButtonReset" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" text="Supprimer" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="idButtonValider" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="V" GridPane.rowIndex="1">
+                                    <Button fx:id="idButtonValider" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="Valider" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -202,7 +214,7 @@
                               <TextField fx:id="idClasse" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <GridPane>
+                        <GridPane prefHeight="91.0" prefWidth="153.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -217,6 +229,11 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="loading" fitHeight="62.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../icons/loader.gif" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </GridPane>
                         <TextField fx:id="ensID" visible="false" />
@@ -225,11 +242,11 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="473.0" prefWidth="577.0">
+                  <VBox prefHeight="474.0" prefWidth="470.0">
                      <children>
                         <Label text="Liste des classes">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <opaqueInsets>
                               <Insets bottom="15.0" left="15.0" top="20.0" />
@@ -238,7 +255,7 @@
                               <Insets bottom="8.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="tableClasse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                        <TableView fx:id="tableClasse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="465.0">
                            <columns>
                               <TableColumn fx:id="classeId" prefWidth="75.0" text="N° de la classe" />
                               <TableColumn fx:id="classeNom" prefWidth="276.0" text="Nom des classes" />
@@ -281,7 +298,7 @@
             </MenuBar>
             <ToolBar>
                <items>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="reset" mnemonicParsing="false">
                      <graphic>
                         <ImageView fx:id="undo" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -299,7 +316,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="idDeleteEtablissement" mnemonicParsing="false">
+                  <Button fx:id="exit" mnemonicParsing="false">
                      <graphic>
                         <ImageView fx:id="delete" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -308,9 +325,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="planning" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fx:id="planning" fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/about.png" />
                            </image>

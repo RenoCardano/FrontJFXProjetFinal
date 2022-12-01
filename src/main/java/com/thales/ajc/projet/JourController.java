@@ -29,7 +29,7 @@ public class JourController implements Initializable {
     @FXML
     private Button idBoutonMatiere;
     @FXML
-    private Button idBoutonSalle;
+    private Button idBoutonSalle, idBoutonDeconnexion;
     @FXML
     private Button idBoutonClasse;
     @FXML
