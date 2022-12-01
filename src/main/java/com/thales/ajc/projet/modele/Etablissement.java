@@ -72,13 +72,6 @@ public class Etablissement {
 
     @Override
     public String toString() {
-        return "Etablissement{" +
-                "idEtablissement=" + idEtablissement +
-                ", nom='" + nom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", type='" + type + '\'' +
-                ", numeroTelephone='" + numeroTelephone + '\'' +
-                ", logo='" + logo + '\'' +
-                '}';
+        return  idEtablissement + "-" + nom;
     }
 }
