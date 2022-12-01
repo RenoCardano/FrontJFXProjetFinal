@@ -376,7 +376,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Boolean> delMAtByID(String idMat) {
         RestClient client = RestClient.create()
                 .method("DELETE")
-                .host("http://localhost:8080/api/matiere/delete/" + idMat)
+                .host("http://localhost:8081/api/matiere/delete/" + idMat)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Boolean.class));
@@ -385,7 +385,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Enseignant> delEnsByID(int idEnseignant) {
         RestClient client = RestClient.create()
                 .method("DELETE")
-                .host("http://localhost:8080/api/enseignant/delete/" + idEnseignant)
+                .host("http://localhost:8081/api/enseignant/delete/" + idEnseignant)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Enseignant.class));
@@ -395,7 +395,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Enseignant> getAllEnseignantbyID(String idEnseignant) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/enseignant/" + idEnseignant)
+                .host("http://localhost:8081/api/enseignant/" + idEnseignant)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Enseignant.class));
@@ -404,7 +404,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Matiere> getAllMatierebyID(String idMatiere) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/matiere/" + idMatiere)
+                .host("http://localhost:8081/api/matiere/" + idMatiere)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(Matiere.class));
@@ -448,7 +448,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Matiere> createMat(Matiere matiere) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8080/api/matiere/")
+                .host("http://localhost:8081/api/matiere/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(matiere))
@@ -494,7 +494,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<User> getUserById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/users/" + id)
+                .host("http://localhost:8081/api/users/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
@@ -503,7 +503,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableObject<Enseignement> associationEnSMat(Enseignement tableMatiereEnseignant) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8080/api/enseignement/")
+                .host("http://localhost:8081/api/enseignement/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(tableMatiereEnseignant))
@@ -515,7 +515,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableList<Matiere> getAllMatiere() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/matiere")
+                .host("http://localhost:8081/api/matiere")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(Matiere.class));
@@ -597,7 +597,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableList<Enseignement> getAllEnseignementt() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/enseignement")
+                .host("http://localhost:8081/api/enseignement")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(Enseignement.class));
@@ -606,7 +606,7 @@ public class EnseignantController implements Initializable {
     private GluonObservableList<Enseignant> getAllEnseignant() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/enseignant")
+                .host("http://localhost:8081/api/enseignant")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveList(client.createListDataReader(Enseignant.class));
@@ -616,7 +616,7 @@ public class EnseignantController implements Initializable {
 
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8080/api/enseignant/")
+                .host("http://localhost:8081/api/enseignant/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(enseignant))

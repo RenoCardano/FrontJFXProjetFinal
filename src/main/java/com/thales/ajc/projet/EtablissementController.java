@@ -247,7 +247,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableObject<Boolean> deleteEtablissement(String id) {
         RestClient client = RestClient.create()
                 .method("DELETE")
-                .host("http://localhost:8080/api/etablissement/delete/"+ id)
+                .host("http://localhost:8081/api/etablissement/delete/"+ id)
                 .connectTimeout(20000)
                 .readTimeout(20000);
 
@@ -274,7 +274,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableObject createEtablissement(Etablissement etablissement) {
         RestClient client = RestClient.create()
                 .method("POST")
-                .host("http://localhost:8080/api/etablissement/")
+                .host("http://localhost:8081/api/etablissement/")
                 .connectTimeout(20000)
                 .readTimeout(20000)
                 .dataString(jsonClass.getStringJson(etablissement))
@@ -287,7 +287,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableList<Etablissement> getAllEtablissement() {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/etablissement")
+                .host("http://localhost:8081/api/etablissement")
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return  DataProvider.retrieveList(client.createListDataReader(Etablissement.class));
@@ -295,7 +295,7 @@ public class EtablissementController implements Initializable {
     private GluonObservableObject<User> getUserById(int id) {
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/users/" + id)
+                .host("http://localhost:8081/api/users/" + id)
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));

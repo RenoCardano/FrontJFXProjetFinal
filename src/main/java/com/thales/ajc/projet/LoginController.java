@@ -112,7 +112,7 @@ public class LoginController implements Initializable{
 
         RestClient client = RestClient.create()
                 .method("GET")
-                .host("http://localhost:8080/api/users/"+userLogin2+"/" + passWord2)
+                .host("http://localhost:8081/api/users/"+userLogin2+"/" + passWord2)
                 .connectTimeout(20000)
                 .readTimeout(20000);
 
