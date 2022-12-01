@@ -43,10 +43,11 @@ public class UtilisateurController implements Initializable {
     @FXML
     private Button idButtonValider, idButtonReset, idBoutonJour,
             idBoutonUtilisateur,
+            idBoutonDeconnexion,
             idBoutonClasse,
             idBoutonMatiere,
             idBoutonSalle,
-            idBoutonEtablissement, undo, save, quit, record, idDeleteEtablissement, planning;
+            idBoutonEtablissement,exit, undo, save, quit, record, idDeleteEtablissement, planning;
 
     @FXML
     private Label status, nomEta, NomEns;

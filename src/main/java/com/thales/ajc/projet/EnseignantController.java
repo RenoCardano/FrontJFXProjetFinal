@@ -55,11 +55,11 @@ public class EnseignantController implements Initializable {
     private
     TableColumn<Enseignement, String> TabCodMat  = new TableColumn<Enseignement, String>("Matières");
     @FXML
-    private Button idButtonValiderEns, idButtonResetEns, validerAssociation, idBoutonSalle, delMat;
+    private Button idButtonValiderEns,idBoutonDeconnexion, idButtonResetEns, validerAssociation, idBoutonSalle, delMat;
     @FXML
     private Button creationMat,idBoutonMatiere,idBoutonClasse,
-            idBoutonJour, idBoutonUtilisateur, idBoutonEtablissement
-            ;
+            idBoutonJour, idBoutonUtilisateur, idBoutonEtablissement, exit;
+
     @FXML
     private Button undo, record,quit, planning;
     @FXML
@@ -80,7 +80,6 @@ public class EnseignantController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

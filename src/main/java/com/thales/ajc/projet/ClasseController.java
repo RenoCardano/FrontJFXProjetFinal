@@ -48,7 +48,9 @@ public class ClasseController implements Initializable {
             idBoutonClasse,
             idBoutonMatiere,
             idBoutonSalle,
-            idBoutonEtablissement;;
+            idBoutonDeconnexion,
+            idBoutonEtablissement,
+            exit;
 
     @FXML
     private Label status, nomEta, NomEns;
@@ -65,6 +67,9 @@ public class ClasseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        exit.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            System.exit(0);
+        });
 
         //REDIRECTION VERS Salle De Classe
         idBoutonEtablissement.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -108,6 +113,13 @@ public class ClasseController implements Initializable {
         idBoutonJour.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 SceneControler.switchScene(e, "Jour");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        idBoutonDeconnexion.addEventHandler(MouseEvent.MOUSE_CLICKED, ejour -> {
+            try {
+                SceneControler.switchScene(ejour, "Login");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

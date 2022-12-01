@@ -70,7 +70,7 @@
                </GridPane.margin></PasswordField>
             <ImageView fitHeight="49.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../icons/Mot%20de%20passe.png" />
+                  <Image url="@../icons/Motdepasse.png" />
                </image>
                <GridPane.margin>
                   <Insets right="20.0" />
