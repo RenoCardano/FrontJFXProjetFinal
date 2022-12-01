@@ -6,6 +6,7 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.ajc.projet.api.jsonClass;
 import com.thales.ajc.projet.modele.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -44,7 +46,7 @@ public class UtilisateurController implements Initializable {
             idBoutonClasse,
             idBoutonMatiere,
             idBoutonSalle,
-            idBoutonEtablissement, undo, save, quit, record, idDeleteEtablissement,planning;
+            idBoutonEtablissement, undo, save, quit, record, idDeleteEtablissement, planning;
 
     @FXML
     private Label status, nomEta, NomEns;
@@ -52,13 +54,20 @@ public class UtilisateurController implements Initializable {
     @FXML
     private TableView tableUser;
     @FXML
-    private TableColumn nomEtabl, EtabMainCol;
-    @FXML
-    private TableColumn classeUtilisateur;
+    private TableColumn EtabMainCol;
 
     @FXML
-    private TextField idUtilisateur,idUtlisateur,  loginUtilisateur, motdepasse;
+    private
+    TableColumn<User, String> classeUtilisateur = new TableColumn<User, String>("Enseignants");
+    @FXML
+    private
+    TableColumn<User, String> nomEtabl = new TableColumn<User, String>("Nom Etablissement");
 
+    @FXML
+    private TextField idUtilisateur, loginUtilisateur, motdepasse;
+
+    @FXML
+    private ImageView loading;
     @FXML
     private ComboBox comboEtab;
 
@@ -132,7 +141,7 @@ public class UtilisateurController implements Initializable {
         //////////////////////////////////////////////////////////////////////////
 
 
-        idButtonValider.getStyleClass().setAll("btn", "btn-primary");
+        idButtonValider.getStyleClass().setAll("btn", "btn-info");
         idButtonReset.getStyleClass().setAll("btn", "btn-danger");
 
         //////////////////ClIQUER ET SELECTIONNER/////////////////////////////////
@@ -141,7 +150,21 @@ public class UtilisateurController implements Initializable {
         ///RECUPERATION DE LA LISTES DES ETABLISSEMENTS////////
         getComboEtablissement();
 
-        
+        /////SUPRESION/////////////
+        idButtonReset.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            if (idUtilisateur.getText() != "") {
+                tableUser.setItems(null);
+                GluonObservableObject<Boolean> delUser = deleteByID(Integer.parseInt(idUtilisateur.getText()));
+            }
+            loading.setVisible(true);
+            status.setText("Suppression effectué");
+            tableUser.setItems(null);
+            fetchUtilisateur();
+            status.setText("");
+            loading.setVisible(false);
+        });
+        tableUser.setItems(null);
+        fetchUtilisateur();
 
         idButtonValider.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             if (loginUtilisateur.getText() != "") {
@@ -151,7 +174,7 @@ public class UtilisateurController implements Initializable {
                 String pw = motdepasse.getText();
                 utilisateur.setMotdepasse(pw);
 
-                if(idUtilisateur.getText() != "") {
+                if (idUtilisateur.getText() != "") {
                     int idC = Integer.parseInt(idUtilisateur.getText());
                     utilisateur.setId(idC);
                     idUtilisateur.setText("");
@@ -161,28 +184,33 @@ public class UtilisateurController implements Initializable {
                 //reccupere la valeur de l'index de l'enseignant dans la comboBox
                 String comboEtablissement = String.valueOf(comboEtab.getValue());
                 String idEtablissement = String.valueOf(comboEtablissement.charAt(0));
-                status.setText("");
-
                 GluonObservableObject<Etablissement> etablisementSelected = getAllEtablissementByID(idEtablissement);
 
-                etablisementSelected.setOnRunning( chargement -> {
-                    status.setText("Chargement des données en cours ");
+                etablisementSelected.setOnRunning(chargement -> {
+                    loading.setVisible(true);
                 });
 
-                etablisementSelected.setOnSucceeded( chargement -> {
-                    status.setText("Chargement des données en cours ");
-                        utilisateur.setEtablissement(etablisementSelected.get());
-                        GluonObservableObject<User> createNewClass = createUtilisateur(utilisateur);
+                etablisementSelected.setOnSucceeded(chargement -> {
+                    loading.setVisible(false);
+                    utilisateur.setEtablissement(etablisementSelected.get());
+                    GluonObservableObject<User> createNewClass = createUtilisateur(utilisateur);
 
-                            createNewClass.setOnSucceeded(classe -> {
-                                status.setText("L'utilisateur à bien été crée ");
-                                status.setTextFill(Color.GREEN);
-                            });
-                            createNewClass.setOnFailed(classe -> {
-                                status.setText("Erreur pendant l'enregistrement de l'utlisateur");
-                                status.setTextFill(Color.GREEN);
-                            });
-                        status.setText("");
+                    createNewClass.setOnRunning(classe -> {
+                        loading.setVisible(true);
+                    });
+
+                    createNewClass.setOnSucceeded(classe -> {
+                        status.setText("L'utilisateur à bien été crée ");
+                        status.setTextFill(Color.GREEN);
+                        loading.setVisible(false);
+                        tableUser.setItems(null);
+                        fetchUtilisateur();
+                    });
+                    createNewClass.setOnFailed(classe -> {
+                        status.setText("Erreur pendant l'enregistrement de l'utlisateur");
+                        status.setTextFill(Color.GREEN);
+                    });
+                    status.setText("");
                 });
             }
         });
@@ -190,7 +218,7 @@ public class UtilisateurController implements Initializable {
         /////////////////////////////FETCH///////////////////////////////////////
         fetchUtilisateur();
         /////////////////////////////SELECTIOND AND TABLEAU///////////////////////////////////////
-       // HandleSelectedTab();
+        HandleSelectedTab();
         ////////////////////////////INIT FIELD///////////////////
         //REINITIALISATION DES CHAMPS
         idButtonReset.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -205,6 +233,43 @@ public class UtilisateurController implements Initializable {
             motdepasse.setText("");
         });
     }
+
+    private void HandleSelectedTab() {
+        //selection dans un tableau
+        TableView.TableViewSelectionModel<User> selectionModel =
+                tableUser.getSelectionModel();
+        //Mode de selection Single OR Multiple
+        selectionModel.setSelectionMode(
+                SelectionMode.SINGLE);
+        //recuperation des données dans une liste d'observable
+        ObservableList<User> selectedItems =
+                selectionModel.getSelectedItems();
+
+        //ecoute des modifcations
+        selectedItems.addListener(
+                new ListChangeListener<User>() {
+                    @Override
+                    public void onChanged(
+                            Change<? extends User> change) {
+                        ObservableList<? extends User> selectedUser = change.getList();
+                        //ATTRIBUTION DES VALEURS DANS LES CHAMPS CORRESPONDANT
+                        idUtilisateur.setText(String.valueOf(selectedUser.get(0).getId()));
+                        loginUtilisateur.setText(selectedUser.get(0).getLogin());
+                        motdepasse.setText(selectedUser.get(0).getMotdepasse());
+                    }
+                });
+
+    }
+
+    private GluonObservableObject<Boolean> deleteByID(int id) {
+        RestClient client = RestClient.create()
+                .method("DELETE")
+                .host("http://localhost:8081/api/users/delete/" + id)
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveObject(client.createObjectDataReader(Boolean.class));
+    }
+
 
     private GluonObservableObject<User> createUtilisateur(User utilisateur) {
         RestClient client = RestClient.create()
@@ -281,19 +346,44 @@ public class UtilisateurController implements Initializable {
      */
 
     private void fetchUtilisateur() {
-      /*  GluonObservableList<Classe> classes = getAllClasses();
+        GluonObservableList<User> usersInformationList = getUsers();
 
-        classeId.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
-        classeNom.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
-        classes.setOnSucceeded(e -> {
-            tableClasse.setItems(classes);
+        classeUtilisateur.setCellValueFactory(new PropertyValueFactory<>("login"));
+        nomEtabl.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        classeUtilisateur.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String login = pieceStringCellDataFeatures.getValue().getLogin();
+            return new SimpleStringProperty(login);
         });
-        classes.setOnFailed(e -> {
+        nomEtabl.setCellValueFactory(pieceStringCellDataFeatures -> {
+            String matiereEnseignees = pieceStringCellDataFeatures.getValue().getEtablissement().getNom();
+            return new SimpleStringProperty(matiereEnseignees);
+        });
+
+        usersInformationList.setOnRunning(e -> {
+            loading.setVisible(true);
+        });
+
+        usersInformationList.setOnSucceeded(e -> {
+            loading.setVisible(false);
+            tableUser.setItems(null);
+            tableUser.setItems(usersInformationList);
+
+        });
+        usersInformationList.setOnFailed(e -> {
             status.setText("Erreur de chargement ");
             status.setTextFill(Color.RED);
         });
 
-       */
+    }
+
+    private GluonObservableList<User> getUsers() {
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8081/api/users/")
+                .connectTimeout(10000)
+                .readTimeout(10000);
+        return DataProvider.retrieveList(client.createListDataReader(User.class));
     }
 
     private GluonObservableObject<User> getUserById(int id) {
@@ -303,29 +393,6 @@ public class UtilisateurController implements Initializable {
                 .connectTimeout(10000)
                 .readTimeout(10000);
         return DataProvider.retrieveObject(client.createObjectDataReader(User.class));
-    }
-
-    private GluonObservableList<Classe> getAllClasses() {
-        RestClient client = RestClient.create()
-                .method("GET")
-                .host("http://localhost:8081/api/classe")
-                .connectTimeout(10000)
-                .readTimeout(10000);
-        return DataProvider.retrieveList(client.createListDataReader(Classe.class));
-    }
-
-
-    private GluonObservableObject createClasse(Classe classe) {
-
-        RestClient client = RestClient.create()
-                .method("POST")
-                .host("http://localhost:8081/api/classe/")
-                .connectTimeout(20000)
-                .readTimeout(20000)
-                .dataString(jsonClass.getStringJson(classe))
-                .contentType("application/json");
-
-        return DataProvider.retrieveObject(client.createObjectDataReader(Classe.class));
     }
 
 }

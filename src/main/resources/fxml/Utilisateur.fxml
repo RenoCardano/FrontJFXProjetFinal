@@ -60,7 +60,7 @@
    <right>
       <VBox prefHeight="488.0" prefWidth="160.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
+            <Button fx:id="idBoutonEtablissement" ellipsisString="0" minHeight="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" text="Etablissement" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -107,7 +107,7 @@
             </Button>
             <Button fx:id="idBoutonJour" minHeight="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="164.0" text="Jour" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jour" fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/param.png" />
                      </image>
@@ -207,9 +207,14 @@
                               <TextField fx:id="idUtilisateur" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="Login" GridPane.rowIndex="2" />
                               <TextField fx:id="loginUtilisateur" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ImageView fx:id="loading" fitHeight="57.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@../icons/loader.gif" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </GridPane>
-                        <GridPane>
+                        <GridPane visible="false">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -251,7 +256,6 @@
                               <TableColumn fx:id="EtabMainCol" prefWidth="75.0" text="Etablissement">
                                  <columns>
                                     <TableColumn fx:id="nomEtabl" prefWidth="75.0" text="Nom" />
-                                    <TableColumn fx:id="typeEtab" prefWidth="75.0" text="Type" />
                                  </columns>
                               </TableColumn>
                            </columns>
